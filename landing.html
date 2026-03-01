@@ -661,6 +661,228 @@
 
         .footer-links a:hover {
             color: white;
+            text-decoration: underline;
+        }
+
+        /* ===== PREMIUM FOOTER (KASHKICK STYLE) ===== */
+        .premium-footer {
+            background: linear-gradient(135deg, #16a34a 0%, #2563eb 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Footer CTA Cards */
+        .footer-cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .cta-card {
+            border-radius: 30px;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cta-card-image {
+            background: #ff9a8b;
+            /* Fallback color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-card-content {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4rem;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .cta-card-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .cta-card-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .btn-cta-footer {
+            background: #10b981;
+            /* Light Green */
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-cta-footer:hover {
+            transform: translateY(-3px);
+            background: #059669;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Lower Footer Links */
+        .footer-bottom-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-logo-left {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 3rem;
+            letter-spacing: -2px;
+        }
+
+        .footer-logo-left span {
+            color: #10b981;
+        }
+
+        .footer-app-box h5 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-links-small {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-link-icon {
+            background: white;
+            color: #1e293b;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-circle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-circle:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links-side {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .link-col h6 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .link-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .link-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link-col a:hover {
+            color: white;
+        }
+
+        .footer-legal-copy {
+            text-align: center;
+            margin-top: 6rem;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .footer-links-side {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-links-side {
+                grid-template-columns: 1fr;
+            }
         }
 
         .footer-bottom {
@@ -670,6 +892,177 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             color: #64748b;
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            background: white;
+            padding: 8rem 2rem;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #16a34a, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .about-container h3 {
+            font-size: 1.5rem;
+            color: #16a34a;
+            margin-bottom: 2rem;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== PREMIUM ABOUT SECTION (KASHKICK STYLE) ===== */
+
+        .about-clean {
+            background: white;
+            padding: 8rem 2rem;
+        }
+
+        .about-clean-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #16a34a;
+            /* Green */
+            margin-bottom: 3rem;
+        }
+
+        .about-circle {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 2.5rem;
+            border-radius: 50%;
+            background: #eaf4f3;
+            /* Soft Green/Blue background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .about-tagline {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #16a34a, #2563eb);
+            /* Green to Blue gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #212121;
+            margin-bottom: 1.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem 8rem;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #16a34a;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #16a34a;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #2563eb;
+        }
+
+        .faq-question i {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            /* Large enough to fit content */
+            padding-top: 1.5rem;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -789,33 +1182,6 @@
             </div>
         </section>
 
-        <!-- Ways to Earn -->
-        <section class="section-padding bg-white">
-            <div class="container">
-                <h2 class="section-title dark">Multiple Ways to Earn</h2>
-                <div class="earn-cards">
-                    <div class="earn-card-clean">
-                        <i class="ri-sword-fill"></i>
-                        <h4>Play Games</h4>
-                        <p>Download free mobile games, reach specific levels, and get paid directly to your account. The
-                            higher you level up, the more you earn.</p>
-                    </div>
-                    <div class="earn-card-clean">
-                        <i class="ri-question-answer-fill"></i>
-                        <h4>Take Surveys</h4>
-                        <p>Brands want to hear from you. Spend 5-10 minutes answering questions about your favorite
-                            products and earn easy cash instantly.</p>
-                    </div>
-                    <div class="earn-card-clean">
-                        <i class="ri-shopping-bag-3-fill"></i>
-                        <h4>Special Offers</h4>
-                        <p>Get paid to sign up for free trials, test out new subscription boxes, or simply browse
-                            partner websites.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Benefits Section -->
         <section class="section-padding bg-benefits">
             <div class="container">
@@ -841,78 +1207,293 @@
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section class="section-padding"
-            style="background: linear-gradient(135deg, var(--bg-dark), var(--primary)); text-align: center; color: white;">
+
+        <!-- Ways to Earn -->
+        <section class="section-padding bg-white">
             <div class="container">
-                <h2 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 2rem; letter-spacing: -1px;">Ready to
-                    start earning?</h2>
-                <a href="index.html" class="landing-cta"
-                    style="background: white; color: var(--bg-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">Create
-                    Free Account</a>
+                <h2 class="section-title dark">Multiple Ways to Earn</h2>
+                <div class="earn-cards">
+                    <div class="earn-card-clean">
+                        <i class="ri-sword-fill"></i>
+                        <h4>Play Games</h4>
+                        <p>Download free mobile games, reach specific levels, and get paid directly to your account. The
+                            higher you level up, the more you earn.</p>
+                    </div>
+                    <div class="earn-card-clean">
+                        <i class="ri-question-answer-fill"></i>
+                        <h4>Take Surveys</h4>
+                        <p>Brands want to hear from you. Spend 5-10 minutes answering questions about your favorite
+                            products and earn easy cash instantly.</p>
+                    </div>
+                    <div class="earn-card-clean">
+                        <i class="ri-shopping-bag-3-fill"></i>
+                        <h4>Special Offers</h4>
+                        <p>Get paid to sign up for free trials, test out new subscription boxes, or simply browse
+                            partner websites.</p>
+                    </div>
+                </div>
+
+                <section class="about-clean">
+                    <div class="about-clean-container">
+
+                        <h2 class="about-title">About CashCoin</h2>
+
+                        <div class="about-circle">
+                            <img src="assets/logo.png" alt="CashCoin Ninja">
+                        </div>
+
+                        <div class="about-tagline">
+                            Turning everyday moments into milestones.
+                        </div>
+
+                        <div class="about-text">
+                            <p>
+                                Since our start in 2017, we've been dedicated to giving people smarter ways to engage
+                                with the digital world.
+                                CashCoin is built on one simple idea: everyday actions can create real opportunities.
+                            </p>
+
+                            <p>
+                                We know financial growth doesn't happen overnight—it's built through small, consistent
+                                moves that add up over time.
+                                At CashCoin, it's not just about what you do; it's about how those choices open doors to
+                                a future defined on your own terms.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="faq-section">
+                    <div class="faq-container">
+                        <h2 class="faq-header">FAQ</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How fast do I get paid?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Once you've earned enough to reach the minimum cashout threshold of
+                                    <strong>$10</strong>, you can request a payment to your <strong>PayPal
+                                        account</strong> or choose to kash out via <strong>gift cards</strong>. After
+                                    you submit your request, a member of the CashCoin team personally reviews and
+                                    approves the withdrawal, typically within <strong>1 to 3 business days</strong>.
+                                    Most payouts are approved within a single day, though weekends and holidays may
+                                    cause slight delays.
+                                </p>
+                                <p>Keep in mind, many offers and game milestones have a <strong>pending period</strong>
+                                    before the kash is applied to your account. This is usually between <strong>1 to 31
+                                        days</strong>, with an average around <strong>14 days</strong>. That's because
+                                    CashCoin needs to verify your activity with third-party partners to confirm their
+                                    requirements are met (no one likes fraud, right?). Once it's cleared and your
+                                    balance hits $10 or more, your kash is ready to go. Real money, no mystery, no
+                                    nonsense.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Do I need a PayPal account?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>While PayPal is our most popular payout method, we also offer Various gift card
+                                    options. However, a verified PayPal account is recommended for the fastest and most
+                                    flexible cash out experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Is CashCoin legit?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Absolutely! We've paid out millions of dollars to our members. Our partnerships with
+                                    major brands and game developers allow us to pass those rewards directly to you.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Is CashCoin really free?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, joining and using CashCoin is 100% free. We get paid by our partners when you
+                                    engage with their offers, and we share that revenue with you.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Which countries is CashCoin available in?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Currently, CashCoin is primarily available to users in the United States. We are
+                                    actively working on expanding to more regions soon!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How secure is CashCoin?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We take security very seriously. We use industry-standard encryption and security
+                                    protocols to protect your data and ensure your earnings are safe.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Is my data safe?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Your privacy is our priority. We only share necessary data with partners to track
+                                    offer completions, and we never sell your personal information to third parties.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What if I'm not a ninja yet?</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>No worries! Everyone starts somewhere. As you complete more tasks and level up,
+                                    you'll master the art of earning and become a CashCoin ninja in no time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <a href="#" class="footer-logo">CashiCoin<span style="color: var(--primary);">&lt;</span></a>
-                <p style="color: #94a3b8; line-height: 1.6; margin-top: 1rem;">Turn your free time into real rewards.
-                    Join millions of users earning cash back, gift cards, and more.</p>
-            </div>
-            <div class="footer-links">
-                <h5>Company</h5>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Trust & Safety</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h5>Support</h5>
-                <ul>
-                    <li><a href="support.html">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="get-started.html">How it Works</a></li>
-                    <li><a href="#">Status</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h5>Legal</h5>
-                <ul>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                    <li><a href="#">Do Not Sell My Info</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 CashiCoin Inc. All rights reserved. Trade marks belong to their respective owners.
-        </div>
-    </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+        <!-- Footer -->
+        <footer class="premium-footer">
+            <div class="footer-container">
+                <!-- New CTA Grid -->
+                <div class="footer-cta-grid">
+                    <div class="cta-card cta-card-image">
+                        <img src="assets/trust_section_img.png" alt="Happy CashCoin User">
+                    </div>
+                    <div class="cta-card cta-card-content">
+                        <h2>Stop giving your time away</h2>
+                        <p>Join 3 million+ members already making strategic moves with CashCoin and give your free time
+                            the raise it deserves.</p>
+                        <a href="index.html" class="btn-cta-footer">Make Your First Move</a>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom Part -->
+                <div class="footer-bottom-grid">
+                    <div class="footer-brand-side">
+                        <a href="#" class="footer-logo-left">CashCoin<span>&lt;</span></a>
+
+                        <div class="footer-app-box">
+                            <h5>Get The CashCoin App</h5>
+                            <div class="app-links-small">
+                                <a href="#" class="app-link-icon">
+                                    <i class="ri-apple-fill"></i>
+                                    App Store
+                                </a>
+                                <a href="#" class="app-link-icon">
+                                    <i class="ri-google-play-fill"></i>
+                                    Google Play
+                                </a>
+                            </div>
+                            <div class="social-row">
+                                <a href="#" class="social-circle"><i class="ri-tiktok-fill"></i></a>
+                                <a href="#" class="social-circle"><i class="ri-instagram-line"></i></a>
+                                <a href="#" class="social-circle"><i class="ri-facebook-circle-fill"></i></a>
+                                <a href="#" class="social-circle"><i class="ri-twitter-x-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-links-side">
+                        <div class="link-col">
+                            <h6>Guide</h6>
+                            <ul>
+                                <li><a href="#">Earn</a></li>
+                                <li><a href="#">Invest</a></li>
+                                <li><a href="#">Save</a></li>
+                                <li><a href="#">Side Hustles</a></li>
+                                <li><a href="#">Mastering CashCoin</a></li>
+                                <li><a href="#">Game Tips</a></li>
+                                <li><a href="#">Reviews</a></li>
+                            </ul>
+                        </div>
+                        <div class="link-col">
+                            <h6>Ways to Make Money</h6>
+                            <ul>
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Surveys</a></li>
+                                <li><a href="#">Deals</a></li>
+                            </ul>
+                        </div>
+                        <div class="link-col">
+                            <h6>Resources</h6>
+                            <ul>
+                                <li><a href="#">Support</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">California Privacy Rights</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-legal-copy">
+                    All Rights Reserved By CashCoin
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                // Apply observer to feature cards for "drag" scroll effect
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 0.15}s`;
+                    observer.observe(card);
                 });
-            }, { threshold: 0.1 });
 
-            // Apply observer to feature cards for "drag" scroll effect
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.15}s`;
-                observer.observe(card);
+                // FAQ Accordion Functionality
+                const faqItems = document.querySelectorAll('.faq-item');
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question');
+                    question.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+
+                        // Close all other items
+                        faqItems.forEach(otherItem => {
+                            otherItem.classList.remove('active');
+                        });
+
+                        // Toggle current item
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 
 </html>
