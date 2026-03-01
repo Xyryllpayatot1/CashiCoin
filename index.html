@@ -26,8 +26,8 @@
             <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
         </nav>
         <div class="nav-actions">
-            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
-            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+            <button id="navSignup" class="nav-btn btn-primary">Sign Up</button>
+            <button id="navLogin" class="nav-btn btn-white">Login</button>
         </div>
     </header>
     <div class="main-content">
@@ -48,15 +48,11 @@
                     <button class="social-btn google" aria-label="Sign in with Google">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
                             alt="Google logo">
-                        <span>Sign In with Google</span>
+                        <span>Google</span>
                     </button>
                     <button class="social-btn paypal" aria-label="Sign in with Paypal">
                         <i class="ri-paypal-fill" style="color: #00457C;"></i>
-                        <span>Sign In with Paypal</span>
-                    </button>
-                    <button class="social-btn facebook" aria-label="Sign in with Facebook">
-                        <i class="ri-facebook-circle-fill" style="color: #1877F2;"></i>
-                        <span>Sign In with Facebook</span>
+                        <span>Paypal</span>
                     </button>
                 </div>
 
@@ -76,9 +72,9 @@
                         </button>
                     </div>
 
-                    <button type="submit" class="signin-submit">Log In</button>
+                    <button type="submit" id="submitBtn" class="signin-submit">Log In</button>
 
-                    <div class="form-footer">
+                    <div class="form-footer" id="loginOptions">
                         <div class="remember-me">
                             <label class="checkbox-container">
                                 <input type="checkbox" id="remember">
@@ -92,39 +88,177 @@
             </div>
         </div>
     </div>
+    <div class="modal-overlay" id="googleModal">
+        <div class="account-modal">
+            <div class="modal-header">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
+                <h2>Choose an account</h2>
+                <p>to continue to CashiCoin</p>
+            </div>
+            <div class="account-list">
+                <div class="account-option" data-email="xyryll_demo@gmail.com">
+                    <div class="avatar">X</div>
+                    <div class="account-details">
+                        <h4>Xyryll Demo</h4>
+                        <p>xyryll_demo@gmail.com</p>
+                    </div>
+                </div>
+                <div class="account-option" data-email="guest_user@gmail.com">
+                    <div class="avatar" style="background: #2563eb;">G</div>
+                    <div class="account-details">
+                        <h4>Guest User</h4>
+                        <p>guest_user@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Auth Toggle Logic (Using Top Nav)
+        const navLogin = document.getElementById('navLogin');
+        const navSignup = document.getElementById('navSignup');
+        const submitBtn = document.getElementById('submitBtn');
+        const loginOptions = document.getElementById('loginOptions');
+        const authTitle = document.querySelector('title');
+        let isLogin = true;
+
+        const updateUI = () => {
+            if (isLogin) {
+                navLogin.className = 'nav-btn btn-primary';
+                navSignup.className = 'nav-btn btn-white';
+                submitBtn.textContent = 'Log In';
+                loginOptions.style.display = 'flex';
+                authTitle.textContent = 'Sign In - CashiCoin';
+            } else {
+                navSignup.className = 'nav-btn btn-primary';
+                navLogin.className = 'nav-btn btn-white';
+                submitBtn.textContent = 'Create Account';
+                loginOptions.style.display = 'none';
+                authTitle.textContent = 'Sign Up - CashiCoin';
+            }
+        }
+
+        // Initialize state
+        updateUI();
+
+        navLogin.addEventListener('click', () => {
+            if (!isLogin) {
+                isLogin = true;
+                updateUI();
+            }
+        });
+
+        navSignup.addEventListener('click', () => {
+            if (isLogin) {
+                isLogin = false;
+                updateUI();
+            }
+        });
+
+        // Mock Google Login with Account Selector
+        const googleBtn = document.querySelector('.social-btn.google');
+        const googleModal = document.getElementById('googleModal');
+        const accountOptions = document.querySelectorAll('.account-option');
+
+        if (googleBtn) {
+            googleBtn.addEventListener('click', () => {
+                googleModal.style.display = 'flex';
+            });
+        }
+
+        // Close modal when clicking outside
+        googleModal.addEventListener('click', (e) => {
+            if (e.target === googleModal) googleModal.style.display = 'none';
+        });
+
+        accountOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedEmail = option.getAttribute('data-email');
+                sessionStorage.setItem('loggedInUser', selectedEmail);
+
+                // Show loading state on option
+                option.style.opacity = '0.5';
+                option.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 800);
+            });
+        });
+
         // Password toggle logic
-        const togglePassword = document.querySelector('.toggle-password');
+        const togglePasswordBtn = document.querySelector('.toggle-password');
         const passwordInput = document.querySelector('#password');
 
-        if (togglePassword && passwordInput) {
-            togglePassword.addEventListener('click', function (e) {
+        if (togglePasswordBtn && passwordInput) {
+            togglePasswordBtn.addEventListener('click', function (e) {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-                // Toggle icon
                 this.querySelector('i').classList.toggle('ri-eye-line');
                 this.querySelector('i').classList.toggle('ri-eye-off-line');
             });
         }
 
-        // Login form submission logic
+        // Auth Logic using LocalStorage
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-                const submitBtn = this.querySelector('.signin-submit');
+                // Initialize users array from localStorage (Simulating JSON DB)
+                let users = JSON.parse(localStorage.getItem('cashicoin_users')) || [];
 
-                // Simulate loading state
-                submitBtn.textContent = 'Logging in...';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = '0.7';
-                submitBtn.style.cursor = 'not-allowed';
+                if (isLogin) {
+                    // Login Logic
+                    const user = users.find(u => u.email === email && u.password === password);
+                    if (user) {
+                        submitBtn.textContent = 'Logging in...';
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.7';
 
-                // Simulate network request delay before redirect
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1500);
+                        // Store session (Simulating a real session)
+                        sessionStorage.setItem('loggedInUser', email);
+
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
+                    } else {
+                        // Refined feedback for invalid login
+                        alert('Password is invalid or user does not exist. Please check your credentials.');
+                        submitBtn.textContent = 'Log In';
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                    }
+                } else {
+                    // Sign Up Logic
+                    if (users.find(u => u.email === email)) {
+                        alert('Email already exists. Please log in.');
+                        return;
+                    }
+
+                    if (password.length < 6) {
+                        alert('Password must be at least 6 characters.');
+                        return;
+                    }
+
+                    // Save new user (Simulating Write to JSON)
+                    const newUser = { email, password, registeredAt: new Date().toISOString() };
+                    users.push(newUser);
+                    localStorage.setItem('cashicoin_users', JSON.stringify(users));
+
+                    submitBtn.textContent = 'Creating Account...';
+                    submitBtn.disabled = true;
+
+                    // Auto-login after signup
+                    sessionStorage.setItem('loggedInUser', email);
+
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                }
             });
         }
     </script>
