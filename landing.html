@@ -22,21 +22,6 @@
             min-height: 100vh;
         }
 
-        /* Update header transparency for the landing hero */
-        .top-nav {
-            background-color: rgba(6, 16, 34, 0.8);
-            /* Semi-transparent navy */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1rem 3rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
         .hero-landing {
             flex: 1;
             display: flex;
@@ -677,76 +662,98 @@
         }
 
         /* Footer CTA Cards */
-        .footer-cta-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
-
-        .cta-card {
-            border-radius: 30px;
-            overflow: hidden;
-            min-height: 400px;
+        .trust-cta-modern {
+            background: white;
+            padding: 8rem 2rem;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
         }
 
-        .cta-card-image {
-            background: #ff9a8b;
-            /* Fallback color */
+        .cta-modern-container {
+            max-width: 1000px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 4rem;
         }
 
-        .cta-card-image img {
+        .cta-modern-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .cta-modern-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            animation: floating 3s ease-in-out infinite;
         }
 
-        .cta-card-content {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 4rem;
-            justify-content: center;
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .cta-modern-content {
+            flex: 1.2;
             text-align: left;
         }
 
-        .cta-card-content h2 {
-            font-size: 3.5rem;
+        .cta-modern-content h2 {
+            font-size: 3.2rem;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 2rem;
             letter-spacing: -1px;
         }
 
-        .cta-card-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            line-height: 1.6;
+        .cta-modern-content h2 span {
+            display: block;
         }
 
-        .btn-cta-footer {
-            background: #10b981;
-            /* Light Green */
+        .btn-modern-cta {
+            background: #00d97e;
+            /* Vibrant Green */
             color: white;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
             display: inline-block;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 217, 126, 0.2);
         }
 
-        .btn-cta-footer:hover {
-            transform: translateY(-3px);
-            background: #059669;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        .btn-modern-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 217, 126, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .cta-modern-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .cta-modern-content {
+                text-align: center;
+            }
+
+            .cta-modern-content h2 {
+                font-size: 2.5rem;
+            }
         }
 
         /* Lower Footer Links */
@@ -911,6 +918,7 @@
             font-weight: 800;
             background: linear-gradient(90deg, #16a34a, #2563eb);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
         }
@@ -975,6 +983,7 @@
             background: linear-gradient(90deg, #16a34a, #2563eb);
             /* Green to Blue gradient */
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -1068,6 +1077,7 @@
 </head>
 
 <body>
+    <div class="scroll-progress"></div>
     <header class="top-nav">
         <a href="landing.html" class="nav-brand" style="text-decoration: none; color:white;">
             <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
@@ -1094,25 +1104,31 @@
                 <a href="index.html" class="landing-cta">Start Earning Now</a>
             </div>
 
-            <!-- Scattered Logos -->
             <img src="assets/game1.webp" alt="Game 1" class="floating-logo logo-game1 float-main">
             <img src="assets/game2.webp" alt="Game 2" class="floating-logo logo-game2 float-main">
             <img src="assets/tiktok%20logo.webp" alt="TikTok" class="floating-logo logo-tiktok float-main">
             <img src="assets/ubereats.png" alt="UberEats" class="floating-logo logo-uber float-main">
+
+            <div class="mouse-scroll" onclick="document.querySelector('.stats-bar').scrollIntoView();">
+                <span>Scroll</span>
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
         </section>
 
         <!-- Stats Bar -->
         <section class="stats-bar">
-            <div class="stat-item">
-                <h3>3,500,000+</h3>
+            <div class="stat-item reveal delay-100">
+                <h3 class="count-up" data-target="3500000" data-suffix="+">0</h3>
                 <p>Active Members</p>
             </div>
-            <div class="stat-item">
-                <h3>$2,678,765+</h3>
+            <div class="stat-item reveal delay-200">
+                <h3 class="count-up" data-target="2678765" data-prefix="$" data-suffix="+">0</h3>
                 <p>Paid Last Month</p>
             </div>
-            <div class="stat-item">
-                <h3>1-3 Days</h3>
+            <div class="stat-item reveal delay-300">
+                <h3 class="count-up" data-target="3" data-prefix="1-" data-suffix=" Days">0</h3>
                 <p>Fast Payouts</p>
             </div>
         </section>
@@ -1122,45 +1138,46 @@
             <div class="container">
                 <h2 class="section-title light">How CashiCoin Works</h2>
 
-                <div class="hiw-step">
-                    <div class="hiw-content">
+                <div class="hiw-step reveal">
+                    <div class="hiw-content reveal-left">
                         <div class="step-number">1</div>
                         <h3>Sign Up for Free</h3>
                         <p>Join millions of users turning their spare time into real money. Create your profile entirely
                             for free and immediately get access to hundreds of high-paying offers matched specifically
                             to you.</p>
                     </div>
-                    <div class="hiw-image">
+                    <div class="hiw-image reveal-right">
                         <div class="hiw-icon-wrapper float-main">
                             <i class="ri-user-add-fill"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="hiw-step reverse">
-                    <div class="hiw-content">
+
+                <div class="hiw-step reverse reveal">
+                    <div class="hiw-content reveal-right">
                         <div class="step-number">2</div>
                         <h3>Complete Fun Tasks</h3>
                         <p>Whether you love playing the latest mobile games, testing out new apps, or sharing your
                             opinion through short surveys, there's always a fun way to stack up cash on your dashboard.
                         </p>
                     </div>
-                    <div class="hiw-image">
+                    <div class="hiw-image reveal-left">
                         <div class="hiw-icon-wrapper float-main" style="animation-delay: 1s;">
                             <i class="ri-gamepad-fill"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="hiw-step">
-                    <div class="hiw-content">
+                <div class="hiw-step reveal">
+                    <div class="hiw-content reveal-left">
                         <div class="step-number">3</div>
                         <h3>Cash Out Quickly</h3>
                         <p>No more waiting weeks for physical checks or dealing with impossible withdrawal minimums.
                             Once you hit the small threshold, transfer your funds straight to PayPal or choose from top
                             gift cards.</p>
                     </div>
-                    <div class="hiw-image">
+                    <div class="hiw-image reveal-right">
                         <div class="hiw-icon-wrapper float-main" style="animation-delay: 2s;">
                             <i class="ri-paypal-fill"></i>
                         </div>
@@ -1169,35 +1186,38 @@
             </div>
         </section>
 
-        <!-- Trust CTA Section -->
-        <section class="section-padding trust-section">
-            <div class="container trust-container">
-                <div class="trust-image-wrapper">
-                    <img src="assets/trust_section_img.png" alt="Happy user earning rewards" class="trust-image">
+
+
+        <!-- Modern Trust CTA -->
+        <section class="trust-cta-modern">
+            <div class="cta-modern-container reveal">
+                <div class="cta-modern-image reveal-left">
+                    <img src="assets/trust_section_img.png" alt="Happy CashCoin User">
                 </div>
-                <div class="trust-content">
+                <div class="cta-modern-content reveal-right">
                     <h2>No confusing points.<br>No gimmicks.<br>Just real rewards.</h2>
-                    <a href="index.html" class="trust-cta">Make My First $1</a>
+                    <a href="index.html" class="btn-modern-cta">Make My First $1</a>
                 </div>
             </div>
         </section>
+
 
         <!-- Benefits Section -->
         <section class="section-padding bg-benefits">
             <div class="container">
                 <h2 class="section-title light" style="margin-bottom: 3rem;">Here's why millions choose CashiCoin:</h2>
                 <div class="benefits-grid">
-                    <div class="benefit-card">
+                    <div class="benefit-card reveal delay-100">
                         <i class="ri-money-dollar-circle-fill"></i>
                         <h4>Low payout<br>threshold</h4>
                         <p>Start kashing out at just $10. No<br>waiting. No training.</p>
                     </div>
-                    <div class="benefit-card">
+                    <div class="benefit-card reveal delay-200">
                         <i class="ri-check-line"></i>
                         <h4>Earn your way</h4>
                         <p>Pick your path: surveys, games, deals<br>or online shopping.</p>
                     </div>
-                    <div class="benefit-card">
+                    <div class="benefit-card reveal delay-300">
                         <i class="ri-calendar-event-fill"></i>
                         <h4>Fast, reliable<br>payouts</h4>
                         <p>Real members. Real kash. Delivered<br>fast. Most payments arrive within 1-<br>3 business
@@ -1213,19 +1233,19 @@
             <div class="container">
                 <h2 class="section-title dark">Multiple Ways to Earn</h2>
                 <div class="earn-cards">
-                    <div class="earn-card-clean">
+                    <div class="earn-card-clean reveal delay-100">
                         <i class="ri-sword-fill"></i>
                         <h4>Play Games</h4>
                         <p>Download free mobile games, reach specific levels, and get paid directly to your account. The
                             higher you level up, the more you earn.</p>
                     </div>
-                    <div class="earn-card-clean">
+                    <div class="earn-card-clean reveal delay-200">
                         <i class="ri-question-answer-fill"></i>
                         <h4>Take Surveys</h4>
                         <p>Brands want to hear from you. Spend 5-10 minutes answering questions about your favorite
                             products and earn easy cash instantly.</p>
                     </div>
-                    <div class="earn-card-clean">
+                    <div class="earn-card-clean reveal delay-300">
                         <i class="ri-shopping-bag-3-fill"></i>
                         <h4>Special Offers</h4>
                         <p>Get paid to sign up for free trials, test out new subscription boxes, or simply browse
@@ -1234,19 +1254,19 @@
                 </div>
 
                 <section class="about-clean">
-                    <div class="about-clean-container">
+                    <div class="about-clean-container reveal">
 
-                        <h2 class="about-title">About CashCoin</h2>
+                        <h2 class="about-title reveal-scale">About CashCoin</h2>
 
-                        <div class="about-circle">
+                        <div class="about-circle reveal-scale">
                             <img src="assets/logo.png" alt="CashCoin Ninja">
                         </div>
 
-                        <div class="about-tagline">
+                        <div class="about-tagline reveal">
                             Turning everyday moments into milestones.
                         </div>
 
-                        <div class="about-text">
+                        <div class="about-text reveal">
                             <p>
                                 Since our start in 2017, we've been dedicated to giving people smarter ways to engage
                                 with the digital world.
@@ -1266,7 +1286,7 @@
 
                 <!-- FAQ Section -->
                 <section class="faq-section">
-                    <div class="faq-container">
+                    <div class="faq-container reveal">
                         <h2 class="faq-header">FAQ</h2>
 
                         <div class="faq-item">
@@ -1375,22 +1395,9 @@
             </div>
         </section>
 
-
         <!-- Footer -->
-        <footer class="premium-footer">
+        <footer class="premium-footer" style="padding-top: 5rem;">
             <div class="footer-container">
-                <!-- New CTA Grid -->
-                <div class="footer-cta-grid">
-                    <div class="cta-card cta-card-image">
-                        <img src="assets/trust_section_img.png" alt="Happy CashCoin User">
-                    </div>
-                    <div class="cta-card cta-card-content">
-                        <h2>Stop giving your time away</h2>
-                        <p>Join 3 million+ members already making strategic moves with CashCoin and give your free time
-                            the raise it deserves.</p>
-                        <a href="index.html" class="btn-cta-footer">Make Your First Move</a>
-                    </div>
-                </div>
 
                 <!-- Footer Bottom Part -->
                 <div class="footer-bottom-grid">
@@ -1459,20 +1466,71 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const observer = new IntersectionObserver((entries) => {
+                // Scroll Progress Bar
+                const scrollProgress = document.querySelector('.scroll-progress');
+                window.addEventListener('scroll', () => {
+                    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                    scrollProgress.style.width = scrollPercent + '%';
+                });
+
+                const revealObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
+                            entry.target.classList.add('active');
                         }
                     });
-                }, { threshold: 0.1 });
-
-                // Apply observer to feature cards for "drag" scroll effect
-                const cards = document.querySelectorAll('.feature-card');
-                cards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 0.15}s`;
-                    observer.observe(card);
+                }, {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
                 });
+
+                const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+                revealElements.forEach((el) => {
+                    revealObserver.observe(el);
+                });
+
+                // Intersection Observer for Counters
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counters = entry.target.querySelectorAll('.count-up');
+                            counters.forEach(counter => animateCounter(counter));
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                const statsBar = document.querySelector('.stats-bar');
+                if (statsBar) counterObserver.observe(statsBar);
+
+                // Counter Animation Function
+                function animateCounter(el) {
+                    const target = parseInt(el.getAttribute('data-target'));
+                    const prefix = el.getAttribute('data-prefix') || '';
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const duration = 2000; // 2 seconds
+                    const frameDuration = 1000 / 60; // 60fps
+                    const totalFrames = Math.round(duration / frameDuration);
+                    let frame = 0;
+
+                    const count = () => {
+                        frame++;
+                        const progress = frame / totalFrames;
+                        // Ease out expo formula for premium feel
+                        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
+                        const currentCount = Math.round(target * easeOutExpo);
+
+                        el.innerText = prefix + currentCount.toLocaleString() + suffix;
+
+                        if (frame < totalFrames) {
+                            requestAnimationFrame(count);
+                        } else {
+                            el.innerText = prefix + target.toLocaleString() + suffix;
+                        }
+                    };
+
+                    count();
+                }
 
                 // FAQ Accordion Functionality
                 const faqItems = document.querySelectorAll('.faq-item');
