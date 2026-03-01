@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - CashiCoin</title>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Remixicons for Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-content {
+            flex: 1;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--bg-dark);
+            border-radius: 24px;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-large {
+            padding: 1rem 3rem;
+            font-size: 1.125rem;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top-nav">
+        <a href="landing.html" class="nav-brand" style="text-decoration: none; color: white;">
+            <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
+        </a>
+        <nav class="nav-links">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
+            <a href="ways-to-earn.html"><i class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
+            <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
+        </nav>
+        <div class="nav-actions">
+            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
+            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero-section">
+            <h1>How to Get Started</h1>
+            <p>Earning cash doesn't have to be complicated. Follow these simple steps and start turning your time into
+                real money today.</p>
+        </section>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="ri-user-add-fill"></i>
+                </div>
+                <h3>1. Create an Account</h3>
+                <p>Sign up for free using your email or social accounts. It takes less than a minute to join our
+                    community.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="ri-survey-fill"></i>
+                </div>
+                <h3>2. Complete Profile</h3>
+                <p>Fill out your profile so we can match you with the highest paying surveys, games, and offers suited
+                    just for you.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="ri-exchange-dollar-fill"></i>
+                </div>
+                <h3>3. Start Earning</h3>
+                <p>Complete tasks, play games, and share your opinion to earn real cash. Withdraw to PayPal once you hit
+                    the minimum.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to start making money?</h2>
+            <a href="index.html"><button class="nav-btn btn-primary btn-large">Join Now for Free</button></a>
+        </div>
+    </main>
+</body>
+
+</html>

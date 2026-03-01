@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CashiCoin Watermark Replacer Tool</title>
+    <style>
+        body {
+            font-family: Outfit, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+
+        canvas {
+            border: 2px dashed #00d16b;
+            border-radius: 8px;
+            margin-top: 10px;
+            max-width: 100%;
+            display: block;
+        }
+
+        .controls {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        button,
+        label {
+            background: #00d16b;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        button:hover {
+            background: #00b05a;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        input[type="range"] {
+            accent-color: #00d16b;
+        }
+
+        input[type="color"] {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CashiCoin Watermark Replacer Tool</h2>
+    <p>We built this instant editor so you can easily replace the old watermark without needing any special software
+        installed!</p>
+
+    <div class="controls">
+        <label>
+            1. Upload Image
+            <input type="file" id="upload" accept="image/*">
+        </label>
+
+        <div class="slider-group">
+            <label for="patchColor">2. Background Color</label>
+            <input type="color" id="patchColor" value="#0f264e">
+        </div>
+
+        <div class="slider-group">
+            <label for="rotation">3. Text Angle: <span id="rotVal">-12</span>°</label>
+            <input type="range" id="rotation" min="-45" max="45" value="-12">
+        </div>
+
+        <div class="slider-group">
+            <label for="fontSize">4. Font Size: <span id="fontVal">42</span>px</label>
+            <input type="range" id="fontSize" min="10" max="100" value="42">
+        </div>
+
+        <button onclick="download()">5. Download Result</button>
+    </div>
+
+    <p style="color:#94a3b8; font-size:14px; margin-top:20px;">
+        Instructions: <br>
+        - Drag the <b>4 red corner points</b> to create a patch covering the old watermark (it will be filled with the
+        background color). <br>
+        - Drag the <b>green dot</b> to position the new "CashiCoin" text over the patch.
+    </p>
+
+    <canvas id="c" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+        const upload = document.getElementById('upload');
+        const rotationInput = document.getElementById('rotation');
+        const fontInput = document.getElementById('fontSize');
+        const colorInput = document.getElementById('patchColor');
+
+        let img = null;
+
+        // Initial setup for endpoints
+        let points = [
+            { x: 300, y: 150 }, { x: 500, y: 120 },
+            { x: 520, y: 220 }, { x: 320, y: 250 },
+            { x: 410, y: 185, isText: true } // index 4 is text
+        ];
+
+        let draggingPoint = null;
+
+        upload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                img = new Image();
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    // Center our elements around text on common phone screen size
+                    let cx = img.width / 2;
+                    let cy = img.height / 2;
+
+                    points = [
+                        { x: cx - 180, y: cy - 100 }, { x: cx + 180, y: cy - 160 },
+                        { x: cx + 220, y: cy + 70 }, { x: cx - 160, y: cy + 130 },
+                        { x: cx + 10, y: cy - 40, isText: true }
+                    ];
+                    draw();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        rotationInput.addEventListener('input', (e) => {
+            document.getElementById('rotVal').innerText = e.target.value;
+            draw();
+        });
+        fontInput.addEventListener('input', (e) => {
+            document.getElementById('fontVal').innerText = e.target.value;
+            draw();
+        });
+        colorInput.addEventListener('input', (e) => {
+            draw();
+        });
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY
+            };
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const { x, y } = getMousePos(e);
+            // generous click radius for high-res images
+            const threshold = Math.max(20, canvas.width / 50);
+            for (let p of points) {
+                if (Math.hypot(p.x - x, p.y - y) < threshold) {
+                    draggingPoint = p;
+                    return;
+                }
+            }
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!draggingPoint) return;
+            const { x, y } = getMousePos(e);
+            draggingPoint.x = x;
+            draggingPoint.y = y;
+            draw();
+        });
+
+        canvas.addEventListener('mouseup', () => draggingPoint = null);
+        canvas.addEventListener('mouseleave', () => draggingPoint = null);
+
+        function drawPatchAndText() {
+            // Draw dark patch
+            ctx.fillStyle = colorInput.value;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            ctx.lineTo(points[1].x, points[1].y);
+            ctx.lineTo(points[2].x, points[2].y);
+            ctx.lineTo(points[3].x, points[3].y);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw text
+            ctx.save();
+            const textP = points[4];
+            const angle = parseInt(rotationInput.value) * Math.PI / 180;
+            const fSize = parseInt(fontInput.value);
+
+            ctx.translate(textP.x, textP.y);
+            ctx.rotate(angle);
+
+            // Logo text
+            ctx.font = `bold ${fSize}px sans-serif`;
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowBlur = 4;
+            ctx.shadowOffsetY = 2;
+
+            // Draw logo mark icon
+            ctx.fillStyle = '#00d16b';
+            ctx.fillText("↻", -fSize * 2.5, 0); // basic representation of logo
+
+            ctx.fillStyle = 'white';
+            ctx.fillText("CashiCoin", 0, 0);
+
+            // Subtitle
+            ctx.font = `bold ${fSize * 0.5}px sans-serif`;
+            ctx.fillStyle = "#cbd5e1";
+            ctx.shadowBlur = 1;
+            ctx.fillText("Welcome to CashiCoin!", 0, fSize * 1.5);
+            ctx.restore();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (!img) {
+                ctx.fillStyle = '#1e293b';
+                ctx.font = "24px sans-serif";
+                ctx.fillText("Please upload an image to begin.", 50, 100);
+                return;
+            }
+
+            ctx.drawImage(img, 0, 0);
+
+            drawPatchAndText();
+
+            // Draw interactive handles
+            const r = Math.max(8, canvas.width / 100);
+            for (let p of points) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = p.isText ? '#00d16b' : '#ef4444';
+                ctx.fill();
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        function download() {
+            if (!img) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+            drawPatchAndText(); // draw without handles
+
+            const link = document.createElement('a');
+            link.download = 'fixed_image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            draw(); // restore handles
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>

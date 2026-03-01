@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ways to Earn - CashiCoin</title>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Remixicons for Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-content {
+            flex: 1;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .earn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .earn-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .earn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .earn-card-header {
+            background: var(--bg-dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .earn-card-header i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .earn-card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .earn-card-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .earn-card-body p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .earn-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn.btn-play {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top-nav">
+        <a href="landing.html" class="nav-brand" style="text-decoration: none; color: white;">
+            <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
+        </a>
+        <nav class="nav-links">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
+            <a href="ways-to-earn.html"
+                style="opacity: 1; border-bottom: 2px solid var(--primary); padding-bottom: 5px;"><i
+                    class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
+            <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
+        </nav>
+        <div class="nav-actions">
+            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
+            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero-section">
+            <h1>Ways to Earn Rewards</h1>
+            <p>From playing the latest mobile games to sharing your opinion on popular brands, there are countless ways
+                to earn cash.</p>
+        </section>
+
+        <div class="earn-grid">
+            <div class="earn-card">
+                <div class="earn-card-header">
+                    <i class="ri-gamepad-fill"></i>
+                    <h3>Play Games</h3>
+                </div>
+                <div class="earn-card-body">
+                    <p>Download and play popular mobile games. Reach specific levels or milestones within the time limit
+                        to earn your reward.</p>
+                    <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $150 per game</div>
+                    <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Playing</button></a>
+                </div>
+            </div>
+
+            <div class="earn-card">
+                <div class="earn-card-header">
+                    <i class="ri-survey-fill"></i>
+                    <h3>Take Surveys</h3>
+                </div>
+                <div class="earn-card-body">
+                    <p>Share your honest opinion on products and services from top brands. Your feedback shapes the
+                        future, and you get paid for it.</p>
+                    <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $5 per survey</div>
+                    <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Surveys</button></a>
+                </div>
+            </div>
+
+            <div class="earn-card">
+                <div class="earn-card-header">
+                    <i class="ri-shopping-bag-3-fill"></i>
+                    <h3>Extra Offers</h3>
+                </div>
+                <div class="earn-card-body">
+                    <p>Sign up for new services, try out free trials, or shop online through our partners to earn
+                        massive cash back rewards.</p>
+                    <div class="earn-amount"><i class="ri-coins-fill"></i> Variable High Rewards</div>
+                    <a href="index.html"><button class="nav-btn btn-primary btn-play">View Offers</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
