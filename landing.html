@@ -24,10 +24,17 @@
 
         /* Update header transparency for the landing hero */
         .top-nav {
-            background-color: transparent;
-            padding: 1.5rem 3rem;
-            position: relative;
-            z-index: 10;
+            background-color: rgba(6, 16, 34, 0.8);
+            /* Semi-transparent navy */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
         .hero-landing {
@@ -288,12 +295,59 @@
 
         .hiw-image {
             flex: 1;
-            background: rgba(0, 209, 107, 0.1);
-            border-radius: 24px;
-            min-height: 400px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            min-height: 350px;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .hiw-image:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 209, 107, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 209, 107, 0.15);
+        }
+
+        .hiw-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 209, 107, 0.1) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hiw-icon-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hiw-icon-wrapper i {
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #008f49 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 10px rgba(0, 209, 107, 0.3));
         }
 
         .step-number {
@@ -426,6 +480,139 @@
             line-height: 1.6;
         }
 
+        /* Trust CTA Section */
+        .trust-section {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .trust-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 900px;
+        }
+
+        .trust-image-wrapper {
+            flex: 0 0 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .trust-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .trust-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .trust-content h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--bg-dark);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .trust-cta {
+            background-color: var(--primary);
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 209, 107, 0.3);
+        }
+
+        .trust-cta:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-hover);
+            box-shadow: 0 10px 20px rgba(0, 209, 107, 0.4);
+        }
+
+        /* Benefits Section */
+        .bg-benefits {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #004d28 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 209, 107, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 209, 107, 0.15);
+        }
+
+        .benefit-card i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-shadow: 0 4px 10px rgba(0, 209, 107, 0.3);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .trust-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .trust-content {
+                align-items: center;
+            }
+
+            .trust-content h2 {
+                font-size: 2.25rem;
+            }
+        }
+
         /* Footer */
         footer {
             background: #061022;
@@ -550,9 +737,10 @@
                             for free and immediately get access to hundreds of high-paying offers matched specifically
                             to you.</p>
                     </div>
-                    <div class="hiw-image" style="background: transparent;">
-                        <img src="" alt="Sign up on phone"
-                            style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1)); transform: scale(1.2);">
+                    <div class="hiw-image">
+                        <div class="hiw-icon-wrapper float-main">
+                            <i class="ri-user-add-fill"></i>
+                        </div>
                     </div>
                 </div>
 
@@ -565,7 +753,9 @@
                         </p>
                     </div>
                     <div class="hiw-image">
-                        <i class="ri-gamepad-fill" style="font-size: 8rem; color: var(--primary);"></i>
+                        <div class="hiw-icon-wrapper float-main" style="animation-delay: 1s;">
+                            <i class="ri-gamepad-fill"></i>
+                        </div>
                     </div>
                 </div>
 
@@ -578,8 +768,23 @@
                             gift cards.</p>
                     </div>
                     <div class="hiw-image">
-                        <i class="ri-paypal-fill" style="font-size: 8rem; color: var(--primary);"></i>
+                        <div class="hiw-icon-wrapper float-main" style="animation-delay: 2s;">
+                            <i class="ri-paypal-fill"></i>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust CTA Section -->
+        <section class="section-padding trust-section">
+            <div class="container trust-container">
+                <div class="trust-image-wrapper">
+                    <img src="assets/trust_section_img.png" alt="Happy user earning rewards" class="trust-image">
+                </div>
+                <div class="trust-content">
+                    <h2>No confusing points.<br>No gimmicks.<br>Just real rewards.</h2>
+                    <a href="index.html" class="trust-cta">Make My First $1</a>
                 </div>
             </div>
         </section>
@@ -611,28 +816,26 @@
             </div>
         </section>
 
-        <!-- Why Choose Us -->
-        <section class="section-padding bg-primary">
+        <!-- Benefits Section -->
+        <section class="section-padding bg-benefits">
             <div class="container">
-                <h2 class="section-title light">Why Choose CashiCoin?</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <i class="ri-money-dollar-circle-fill feature-icon"></i>
-                        <h4>Highest Payouts</h4>
-                        <p>We negotiate the best rates with our partners so we can pass alongside the highest possible
-                            rewards straight directly to our users.</p>
+                <h2 class="section-title light" style="margin-bottom: 3rem;">Here's why millions choose CashiCoin:</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="ri-money-dollar-circle-fill"></i>
+                        <h4>Low payout<br>threshold</h4>
+                        <p>Start kashing out at just $10. No<br>waiting. No training.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="ri-shield-check-fill feature-icon"></i>
-                        <h4>Safe & Secure</h4>
-                        <p>Your data is encrypted and protected. We never sell your personal information, ensuring a
-                            totally safe earning environment.</p>
+                    <div class="benefit-card">
+                        <i class="ri-check-line"></i>
+                        <h4>Earn your way</h4>
+                        <p>Pick your path: surveys, games, deals<br>or online shopping.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="ri-customer-service-2-fill feature-icon"></i>
-                        <h4>24/7 Support</h4>
-                        <p>Having trouble receiving points? Our dedicated USA-based support team is always standing by
-                            to make sure you get paid what you're owed.</p>
+                    <div class="benefit-card">
+                        <i class="ri-calendar-event-fill"></i>
+                        <h4>Fast, reliable<br>payouts</h4>
+                        <p>Real members. Real kash. Delivered<br>fast. Most payments arrive within 1-<br>3 business
+                            days. Easy.</p>
                     </div>
                 </div>
             </div>
