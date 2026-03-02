@@ -8,6 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
     <style>
         :root {
@@ -784,8 +785,7 @@
         <!-- SURVEYS HEADER HERO -->
         <section class="survey-hero">
             <div class="survey-hero-mascot">
-                <img src="C:/Users/Xyryll-laptop/.gemini/antigravity/brain/b40aab30-42b5-4d2d-b882-2e255a19413f/survey_mascot_1772491439946.png"
-                    alt="Survey Mascot">
+                <img src="C:\Users\Xyryll-laptop\Documents\cashiapp\assets\mascot.png" alt="Survey Mascot">
             </div>
             <div class="survey-hero-text">
                 <h2>Surveys</h2>
@@ -852,87 +852,157 @@
                         </div>
                         <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
                     </div>
+
+                    <!-- Card 4 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">13 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.86</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">10 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.72</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">14 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.79</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
                 </div>
             </div>
 
             <!-- Panel: Profiles -->
             <div id="survey-tab-profiles" class="survey-panel" style="display: none;">
-                <div class="empty-state show">
-                    <div class="empty-state-info">
-                        <i class="ri-information-fill"></i>
-                        <button class="filter-pill">
-                            <i class="ri-filter-3-fill"></i>
-                            <span>Show Deals (70)</span>
-                        </button>
-                        <i class="ri-search-line search-trigger"></i>
-                        <div class="sort-dropdown">
-                            <span>Sort by</span>
-                            <i class="ri-arrow-down-s-line"></i>
+
+                <!-- Maximize Earning Banner -->
+                <div class="profile-earning-banner">
+                    <div class="earning-banner-content">
+                        <div class="earning-text">
+                            <h3>Maximize Your Earning Power!</h3>
+                            <p>Complete your profiles and unlock the best surveys, bigger rewards, and instant kash!</p>
                         </div>
+                        <div class="earning-status">
+                            <span class="status-label">Get started today!</span>
+                            <span class="status-amount">$0.00 / $1.80</span>
+                        </div>
+                    </div>
+                    <div class="earning-progress-bar">
+                        <div class="earning-progress-fill" style="width: 5%;"></div>
                     </div>
                 </div>
 
-                <!-- Deals: Available -->
-                <div id="deals-available" class="sub-panel active" style="display: block;">
-                    <section class="game-grid">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
-                                class="card-img" alt="Chime">
-                            <div class="card-body">
-                                <h3>Chime®</h3>
-                                <p>Award Winning Financial App. Get paid early and build credit history!</p>
-                                <div class="reward-box">
-                                    <span class="reward-label">$305.00</span>
-                                    <a href="#" class="btn-join">Start</a>
-                                </div>
+                <!-- Profiles Grid -->
+                <div class="profile-grid">
+                    <!-- General Profile (Active) -->
+                    <div class="profile-card active">
+                        <div class="profile-card-header">
+                            <div class="profile-title">
+                                <i class="ri-list-check"></i>
+                                <h4>General</h4>
+                            </div>
+                            <span class="profile-reward-badge">$1.00</span>
+                        </div>
+                        <p class="profile-desc">Introduce yourself</p>
+                        <div class="profile-progress-bar">
+                            <div class="profile-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/15</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Gaming Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Gaming</h4>
                             </div>
                         </div>
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80"
-                                class="card-img" alt="SoFi">
-                            <div class="card-body">
-                                <h3>SoFi Checking & Savings</h3>
-                                <p>Get your money right. Earn high interest and $300 sign-up bonus.</p>
-                                <div class="reward-box">
-                                    <span class="reward-label">$250.00</span>
-                                    <a href="#" class="btn-join">Start</a>
-                                </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/11</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Household Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Household</h4>
                             </div>
                         </div>
-                    </section>
-                </div>
-
-                <!-- Deals: In Progress -->
-                <div id="deals-inprogress" class="sub-panel" style="display: none;">
-                    <div class="empty-state show">
-                        <div class="empty-state-info">
-                            <i class="ri-information-fill"></i>
-                            <span>Please allow 24 hours for your activity to be displayed here.</span>
-                        </div>
-                        <div class="empty-state-mascot">
-                            <img src="assets/kashkick_ninja_clean.png" alt="Deals Mascot">
-                        </div>
-                        <h3>No Deals are in Progress</h3>
-                        <p>Take part and complete any available Deals and they will be displayed here.</p>
-                        <div class="empty-state-actions">
-                            <a href="#" class="btn-empty"
-                                onclick="switchSubTab('deals', 'available', document.querySelector('#section-deals .tab-kash-item')); return false;">See
-                                Available Deals</a>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/12</span>
+                            <i class="ri-arrow-right-s-line"></i>
                         </div>
                     </div>
-                </div>
 
-                <!-- Deals: History -->
-                <div id="deals-history" class="sub-panel" style="display: none;">
-                    <div class="empty-state show">
-                        <div class="empty-state-mascot">
-                            <img src="assets/kashkick_ninja_clean.png" alt="Deals Mascot">
+                    <!-- Occupation Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Occupation</h4>
+                            </div>
                         </div>
-                        <h3>No History Found</h3>
-                        <p>You haven't completed any Deals yet.</p>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/7</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
                     </div>
+
+                    <!-- Automobile Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Automobile</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/7</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Travel & Ent Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Travel & Ent.</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/9</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
                 </div>
-            </div><!-- END SECTION: DEALS -->
+            </div>
 
     </main>
 
