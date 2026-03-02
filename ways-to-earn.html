@@ -34,7 +34,7 @@
 
         .earn-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
@@ -104,75 +104,177 @@
             font-size: 1rem;
             border-radius: 50px;
         }
+
+        /* ===== ABOUT CASHICOIN SECTION ===== */
+
+        .about-cashicoin-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #ecfdf5, #eff6ff);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #16a34a, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .about-container h3 {
+            font-size: 1.5rem;
+            color: #16a34a;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 
 <body>
     <header class="top-nav">
-        <a href="landing.html" class="nav-brand" style="text-decoration: none; color: white;">
-            <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
-        </a>
-        <nav class="nav-links">
-            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
-            <a href="ways-to-earn.html"
-                style="opacity: 1; border-bottom: 2px solid var(--primary); padding-bottom: 5px;"><i
-                    class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
-            <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
-        </nav>
-        <div class="nav-actions">
-            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
-            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+        <div class="nav-container">
+            <a href="landing.html" class="nav-brand">
+                CashiCoin<span>&lt;</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="nav-desktop">
+                <nav class="nav-links">
+                    <a href="get-started.html">
+                        <i class="ri-money-dollar-circle-fill"></i>
+                        <span>Get Started</span>
+                    </a>
+                    <a href="ways-to-earn.html">
+                        <i class="ri-book-open-fill"></i>
+                        <span>Guide</span>
+                    </a>
+                    <a href="support.html">
+                        <i class="ri-question-fill"></i>
+                        <span>Support</span>
+                    </a>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="index.html" class="nav-btn btn-primary">Sign Up</a>
+                    <a href="index.html" class="nav-btn btn-white">Login</a>
+                </div>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
+            <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
+            <a href="support.html"><i class="ri-question-fill"></i> Support</a>
+
+            <div class="mobile-cta">
+                <a href="index.html" class="btn-primary">Sign Up</a>
+                <a href="index.html" class="btn-outline">Login</a>
+            </div>
+        </div>
+
+        <div class="nav-overlay" id="navOverlay"></div>
     </header>
 
-    <main class="page-content">
-        <section class="hero-section">
-            <h1>Ways to Earn Rewards</h1>
-            <p>From playing the latest mobile games to sharing your opinion on popular brands, there are countless ways
-                to earn cash.</p>
-        </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navToggle = document.getElementById("navToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const navOverlay = document.getElementById("navOverlay");
+            const mobileBack = document.getElementById("mobileBack");
 
-        <div class="earn-grid">
-            <div class="earn-card">
-                <div class="earn-card-header">
-                    <i class="ri-gamepad-fill"></i>
-                    <h3>Play Games</h3>
-                </div>
-                <div class="earn-card-body">
-                    <p>Download and play popular mobile games. Reach specific levels or milestones within the time limit
-                        to earn your reward.</p>
-                    <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $150 per game</div>
-                    <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Playing</button></a>
-                </div>
+            function closeMenu() {
+                if (navToggle) navToggle.classList.remove("active");
+                if (mobileMenu) mobileMenu.classList.remove("active");
+                if (navOverlay) navOverlay.classList.remove("active");
+            }
+
+            if (navToggle && mobileMenu && navOverlay) {
+                navToggle.addEventListener("click", () => {
+                    navToggle.classList.toggle("active");
+                    mobileMenu.classList.toggle("active");
+                    navOverlay.classList.toggle("active");
+                });
+
+                navOverlay.addEventListener("click", closeMenu);
+                if (mobileBack) mobileBack.addEventListener("click", closeMenu);
+            }
+        });
+    </script>
+    <section class="hero-section">
+        <h1>Ways to Earn Rewards</h1>
+        <p>From playing the latest mobile games to sharing your opinion on popular brands, there are countless ways
+            to earn cash.</p>
+    </section>
+
+    <div class="earn-grid">
+        <div class="earn-card">
+            <div class="earn-card-header">
+                <i class="ri-gamepad-fill"></i>
+                <h3>Play Games</h3>
             </div>
-
-            <div class="earn-card">
-                <div class="earn-card-header">
-                    <i class="ri-survey-fill"></i>
-                    <h3>Take Surveys</h3>
-                </div>
-                <div class="earn-card-body">
-                    <p>Share your honest opinion on products and services from top brands. Your feedback shapes the
-                        future, and you get paid for it.</p>
-                    <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $5 per survey</div>
-                    <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Surveys</button></a>
-                </div>
-            </div>
-
-            <div class="earn-card">
-                <div class="earn-card-header">
-                    <i class="ri-shopping-bag-3-fill"></i>
-                    <h3>Extra Offers</h3>
-                </div>
-                <div class="earn-card-body">
-                    <p>Sign up for new services, try out free trials, or shop online through our partners to earn
-                        massive cash back rewards.</p>
-                    <div class="earn-amount"><i class="ri-coins-fill"></i> Variable High Rewards</div>
-                    <a href="index.html"><button class="nav-btn btn-primary btn-play">View Offers</button></a>
-                </div>
+            <div class="earn-card-body">
+                <p>Download and play popular mobile games. Reach specific levels or milestones within the time limit
+                    to earn your reward.</p>
+                <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $150 per game</div>
+                <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Playing</button></a>
             </div>
         </div>
+
+        <div class="earn-card">
+            <div class="earn-card-header">
+                <i class="ri-survey-fill"></i>
+                <h3>Take Surveys</h3>
+            </div>
+            <div class="earn-card-body">
+                <p>Share your honest opinion on products and services from top brands. Your feedback shapes the
+                    future, and you get paid for it.</p>
+                <div class="earn-amount"><i class="ri-coins-fill"></i> Earn up to $5 per survey</div>
+                <a href="index.html"><button class="nav-btn btn-primary btn-play">Start Surveys</button></a>
+            </div>
+        </div>
+
+        <div class="earn-card">
+            <div class="earn-card-header">
+                <i class="ri-shopping-bag-3-fill"></i>
+                <h3>Extra Offers</h3>
+            </div>
+            <div class="earn-card-body">
+                <p>Sign up for new services, try out free trials, or shop online through our partners to earn
+                    massive cash back rewards.</p>
+                <div class="earn-amount"><i class="ri-coins-fill"></i> Variable High Rewards</div>
+                <a href="index.html"><button class="nav-btn btn-primary btn-play">View Offers</button></a>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
     </main>
+    </section>
 </body>
 
 </html>
