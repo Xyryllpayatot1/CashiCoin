@@ -1,4 +1,4 @@
-    :root {
+:root {
     --primary: #00D16B;
     /* Kashkick style bright green */
     --primary-hover: #00B55C;
@@ -1557,16 +1557,18 @@ input:focus {
 .banner-icon {
     width: 65px;
     height: 65px;
-    background: #E8F5E9;
+    background: #DCFCE7;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-.banner-icon i {
-    font-size: 2rem;
-    color: var(--primary);
+.banner-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .banner-text h3 {
@@ -1577,11 +1579,14 @@ input:focus {
 }
 
 .cash-badge {
-    background: var(--primary);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 6px;
+    background: #4ADE80;
+    color: var(--dark);
+    padding: 2px 6px;
+    border-radius: 4px;
     font-weight: 900;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .time-badge {
@@ -1598,20 +1603,22 @@ input:focus {
 }
 
 .btn-unlock {
-    background: var(--primary);
+    background: #00D16B;
     color: white;
     border: none;
-    padding: 1rem 2rem;
+    padding: 1.2rem 3rem;
     border-radius: 50px;
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 209, 107, 0.2);
 }
 
 .btn-unlock:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 209, 107, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 209, 107, 0.4);
+    background: #00bd61;
 }
 
 .survey-grid {
@@ -1853,3 +1860,534 @@ input:focus {
         flex-direction: column;
     }
 }
+
+/* ===== GIVEAWAY PAGE STYLES ===== */
+
+.giveaway-hero {
+    background: #fff;
+    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.giveaway-hero-text h1 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.giveaway-hero-text h1 i {
+    font-size: 1.2rem;
+    color: var(--muted);
+    cursor: help;
+}
+
+.giveaway-hero-text p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.streak-banner {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.streak-icon {
+    font-size: 2.5rem;
+}
+
+.streak-info h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+}
+
+.streak-info p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.giveaway-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 1.2rem;
+}
+
+.giveaway-card-ref {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card-header-banner {
+    height: 140px;
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: white;
+}
+
+.current-banner {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+}
+
+.current-banner.brand-themed {
+    background: linear-gradient(135deg, #061022, var(--dark));
+}
+
+.past-banner {
+    background: linear-gradient(135deg, var(--primary), #00A655);
+}
+
+.card-header-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-box {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.countdown-num {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.countdown-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-bar {
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.status-entered {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+.status-missed {
+    background: #F1F5F9;
+    color: #475569;
+}
+
+.card-content-giveaway {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.giveaway-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.giveaway-date {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.prize-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.prize-item {
+    background: #F8FAFC;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.prize-rank {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.prize-val {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.prize-wide {
+    grid-column: span 3;
+    padding: 1.2rem;
+}
+
+.prize-wide .prize-val {
+    font-size: 1.5rem;
+}
+
+.upcoming-section {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.upcoming-table-container {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.upcoming-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.upcoming-table th {
+    background: #F3E8FF;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #7C3AED;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.upcoming-table th.brand-themed {
+    background: #E8F5E9;
+    color: #166534;
+}
+
+.upcoming-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.upcoming-table tr:last-child td {
+    border-bottom: none;
+}
+
+.td-date,
+.td-prizes,
+.td-winners {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.td-winners i {
+    color: var(--muted);
+}
+
+.btn-add-giveaway {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #7C3AED;
+    color: #7C3AED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-giveaway.brand-themed {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-add-giveaway:hover {
+    background: #7C3AED;
+    color: white;
+}
+
+.btn-add-giveaway.brand-themed:hover {
+    background: var(--primary);
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .giveaway-sections {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== SHOPPING PAGE STYLES ===== */
+
+.shopping-hero {
+    background: #E8F5E9;
+    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+}
+
+.shopping-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.rewards-tag {
+    background: #061022;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rewards-tag::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: #061022;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.rewards-tag span:last-child {
+    color: #00D16B;
+    font-size: 0.75rem;
+}
+
+.shopping-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.shopping-steps li {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.shopping-mascot {
+    position: relative;
+}
+
+.mascot-hint {
+    position: absolute;
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-weight: 800;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+}
+
+.hint-1 { top: -10px; left: -40px; }
+.hint-2 { top: 60px; right: -40px; }
+.hint-3 { bottom: 20px; left: -30px; }
+.hint-4 { top: 120px; left: -50px; }
+
+.hint-val { color: var(--primary); }
+
+.featured-merchants {
+    margin-bottom: 4rem;
+}
+
+.merchant-slider {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0.5rem 2rem;
+    scrollbar-width: none;
+}
+
+.merchant-slider::-webkit-scrollbar { display: none; }
+
+.merchant-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    min-width: 200px;
+    overflow: hidden;
+    transition: 0.3s;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.merchant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: var(--primary);
+}
+
+.merchant-header {
+    height: 100px;
+    overflow: hidden;
+}
+
+.merchant-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.merchant-body {
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.merchant-reward {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.merchant-name {
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.btn-shop {
+    background: #F3E8FF;
+    color: #7C3AED;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+.btn-shop.brand-themed {
+    background: #E8F5E9;
+    color: #166534;
+}
+
+.btn-shop:hover {
+    background: #00D16B;
+    color: white;
+}
+
+.popular-offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.offer-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.offer-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.offer-logo {
+    height: 40px;
+    max-width: 140px;
+    object-fit: contain;
+}
+
+.offer-name {
+    font-weight: 800;
+    color: var(--dark);
+    font-size: 1.1rem;
+}
+
+.offer-reward {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
