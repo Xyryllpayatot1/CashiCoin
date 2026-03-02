@@ -17,18 +17,55 @@
 
 <body>
     <header class="top-nav">
-        <a href="landing.html" class="nav-brand" style="text-decoration: none; color:white;">
-            <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
-        </a>
-        <nav class="nav-links">
-            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
-            <a href="ways-to-earn.html"><i class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
-            <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
-        </nav>
-        <div class="nav-actions">
-            <button id="navSignup" class="nav-btn btn-primary">Sign Up</button>
-            <button id="navLogin" class="nav-btn btn-white">Login</button>
+        <div class="nav-container">
+            <a href="landing.html" class="nav-brand">
+                CashiCoin<span>&lt;</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="nav-desktop">
+                <nav class="nav-links">
+                    <a href="get-started.html">
+                        <i class="ri-money-dollar-circle-fill"></i>
+                        <span>Get Started</span>
+                    </a>
+                    <a href="ways-to-earn.html">
+                        <i class="ri-book-open-fill"></i>
+                        <span>Guide</span>
+                    </a>
+                    <a href="support.html">
+                        <i class="ri-question-fill"></i>
+                        <span>Support</span>
+                    </a>
+                </nav>
+
+                <div class="nav-actions">
+                    <button id="navSignupDesktop" class="nav-btn btn-primary">Sign Up</button>
+                    <button id="navLoginDesktop" class="nav-btn btn-white">Login</button>
+                </div>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
+            <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
+            <a href="support.html"><i class="ri-question-fill"></i> Support</a>
+
+            <div class="mobile-cta">
+                <button id="navSignupMobile" class="btn-primary">Sign Up</button>
+                <button id="navLoginMobile" class="btn-outline">Login</button>
+            </div>
+        </div>
+
+        <div class="nav-overlay" id="navOverlay"></div>
     </header>
     <div class="main-content">
         <div class="left-panel">
@@ -116,8 +153,11 @@
 
     <script>
         // Auth Toggle Logic (Using Top Nav)
-        const navLogin = document.getElementById('navLogin');
-        const navSignup = document.getElementById('navSignup');
+        const navLoginDesktop = document.getElementById('navLoginDesktop');
+        const navSignupDesktop = document.getElementById('navSignupDesktop');
+        const navLoginMobile = document.getElementById('navLoginMobile');
+        const navSignupMobile = document.getElementById('navSignupMobile');
+
         const submitBtn = document.getElementById('submitBtn');
         const loginOptions = document.getElementById('loginOptions');
         const authTitle = document.querySelector('title');
@@ -125,14 +165,20 @@
 
         const updateUI = () => {
             if (isLogin) {
-                navLogin.className = 'nav-btn btn-primary';
-                navSignup.className = 'nav-btn btn-white';
+                if (navLoginDesktop) navLoginDesktop.className = 'nav-btn btn-primary';
+                if (navSignupDesktop) navSignupDesktop.className = 'nav-btn btn-white';
+                if (navLoginMobile) navLoginMobile.className = 'btn-primary';
+                if (navSignupMobile) navSignupMobile.className = 'btn-outline';
+
                 submitBtn.textContent = 'Log In';
                 loginOptions.style.display = 'flex';
                 authTitle.textContent = 'Sign In - CashiCoin';
             } else {
-                navSignup.className = 'nav-btn btn-primary';
-                navLogin.className = 'nav-btn btn-white';
+                if (navSignupDesktop) navSignupDesktop.className = 'nav-btn btn-primary';
+                if (navLoginDesktop) navLoginDesktop.className = 'nav-btn btn-white';
+                if (navSignupMobile) navSignupMobile.className = 'btn-primary';
+                if (navLoginMobile) navLoginMobile.className = 'btn-outline';
+
                 submitBtn.textContent = 'Create Account';
                 loginOptions.style.display = 'none';
                 authTitle.textContent = 'Sign Up - CashiCoin';
@@ -142,19 +188,40 @@
         // Initialize state
         updateUI();
 
-        navLogin.addEventListener('click', () => {
-            if (!isLogin) {
-                isLogin = true;
+        const setLogin = (val) => {
+            if (isLogin !== val) {
+                isLogin = val;
                 updateUI();
             }
-        });
+        };
 
-        navSignup.addEventListener('click', () => {
-            if (isLogin) {
-                isLogin = false;
-                updateUI();
-            }
-        });
+        if (navLoginDesktop) navLoginDesktop.addEventListener('click', () => setLogin(true));
+        if (navSignupDesktop) navSignupDesktop.addEventListener('click', () => setLogin(false));
+        if (navLoginMobile) navLoginMobile.addEventListener('click', () => { setLogin(true); closeMenu(); });
+        if (navSignupMobile) navSignupMobile.addEventListener('click', () => { setLogin(false); closeMenu(); });
+
+        // Mobile Menu Logic
+        const navToggle = document.getElementById("navToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const navOverlay = document.getElementById("navOverlay");
+        const mobileBack = document.getElementById("mobileBack");
+
+        function closeMenu() {
+            if (navToggle) navToggle.classList.remove("active");
+            if (mobileMenu) mobileMenu.classList.remove("active");
+            if (navOverlay) navOverlay.classList.remove("active");
+        }
+
+        if (navToggle && mobileMenu && navOverlay) {
+            navToggle.addEventListener("click", () => {
+                navToggle.classList.toggle("active");
+                mobileMenu.classList.toggle("active");
+                navOverlay.classList.toggle("active");
+            });
+
+            navOverlay.addEventListener("click", closeMenu);
+            if (mobileBack) mobileBack.addEventListener("click", closeMenu);
+        }
 
         // Mock Google Login with Account Selector
         const googleBtn = document.querySelector('.social-btn.google');
