@@ -83,8 +83,62 @@
 </head>
 
 <body>
-    <div class="dashboard-container">
-        <div class="dashboard-card">
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="landing.html" class="nav-brand">
+                CashiCoin<span>&lt;</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="nav-desktop">
+                <nav class="nav-links">
+                    <a href="get-started.html">
+                        <i class="ri-money-dollar-circle-fill"></i>
+                        <span>Get Started</span>
+                    </a>
+                    <a href="ways-to-earn.html">
+                        <i class="ri-book-open-fill"></i>
+                        <span>Guide</span>
+                    </a>
+                    <a href="support.html">
+                        <i class="ri-chat-help-fill"></i>
+                        <span>Support</span>
+                    </a>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="#" id="navLogoutDesktop" class="nav-btn btn-outline"
+                        style="border-color: rgba(255,255,255,0.2);">Log out</a>
+                </div>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-back-btn" id="mobileBack">
+                <i class="ri-arrow-left-line"></i> Back
+            </div>
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
+            <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
+            <a href="support.html"><i class="ri-chat-help-fill"></i> Support</a>
+
+            <div class="mobile-cta">
+                <a href="#" id="navLogoutMobile" class="btn-outline">Log out</a>
+            </div>
+        </div>
+
+        <div class="nav-overlay" id="navOverlay"></div>
+    </header>
+
+    <div class="dashboard-container main-content">
+        <div class="dashboard-card" style="margin-top: 0;">
             <i class="ri-checkbox-circle-fill success-icon"></i>
             <h1 class="dashboard-title">Welcome back!</h1>
             <p id="loginMessage" class="dashboard-subtitle">Checking session...</p>
@@ -119,12 +173,41 @@
                     // Display the requested message
                     loginMessage.innerHTML = `You're now logged in as: <strong>${loggedInUser}</strong>`;
 
-                    // Logout logic
-                    document.getElementById('logoutBtn').addEventListener('click', (e) => {
-                        e.preventDefault();
+                    // Combined Logout logic
+                    const logoutAction = (e) => {
+                        if (e) e.preventDefault();
                         sessionStorage.clear();
                         window.location.href = 'index.html';
-                    });
+                    };
+
+                    document.getElementById('logoutBtn').addEventListener('click', logoutAction);
+                    const navLogoutDesktop = document.getElementById('navLogoutDesktop');
+                    const navLogoutMobile = document.getElementById('navLogoutMobile');
+                    if (navLogoutDesktop) navLogoutDesktop.addEventListener('click', logoutAction);
+                    if (navLogoutMobile) navLogoutMobile.addEventListener('click', logoutAction);
+
+                    // Mobile Menu Logic
+                    const navToggle = document.getElementById("navToggle");
+                    const mobileMenu = document.getElementById("mobileMenu");
+                    const navOverlay = document.getElementById("navOverlay");
+                    const mobileBack = document.getElementById("mobileBack");
+
+                    function closeMenu() {
+                        if (navToggle) navToggle.classList.remove("active");
+                        if (mobileMenu) mobileMenu.classList.remove("active");
+                        if (navOverlay) navOverlay.classList.remove("active");
+                    }
+
+                    if (navToggle && mobileMenu && navOverlay) {
+                        navToggle.addEventListener("click", () => {
+                            navToggle.classList.toggle("active");
+                            mobileMenu.classList.toggle("active");
+                            navOverlay.classList.toggle("active");
+                        });
+
+                        navOverlay.addEventListener("click", closeMenu);
+                        if (mobileBack) mobileBack.addEventListener("click", closeMenu);
+                    }
                 });
             </script>
         </div>
