@@ -5,19 +5,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Started - CashiCoin</title>
-    <!-- Google Fonts: Outfit -->
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <!-- Remixicons for Icons -->
+
+    <!-- Remixicons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
     <style>
+        :root {
+            --primary: #00d97e;
+            --primary-hover: #00c26f;
+            --bg-dark: #0f172a;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f8fafc;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-brand span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: .6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--bg-dark);
+        }
+
+        /* =========================
+           MOBILE NAV
+        ========================= */
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            right: -100%;
+            width: 260px;
+            height: calc(100vh - 80px);
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1.5rem;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            gap: .7rem;
+            align-items: center;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* =========================
+           PAGE CONTENT FIX
+        ========================= */
+
+        main {
+            margin-top: 80px;
+        }
+
         .page-content {
-            flex: 1;
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
         }
 
         .hero-section {
@@ -27,21 +204,20 @@
 
         .hero-section h1 {
             font-size: 3rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
             font-weight: 800;
+            color: var(--text-dark);
         }
 
         .hero-section p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 1rem auto 0;
         }
 
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -59,13 +235,12 @@
         .step-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
         }
 
         .step-icon {
             width: 80px;
             height: 80px;
-            background: var(--primary-light);
+            background: #dcfce7;
             color: var(--primary);
             border-radius: 50%;
             display: flex;
@@ -73,17 +248,6 @@
             justify-content: center;
             font-size: 2.5rem;
             margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
         }
 
         .cta-section {
@@ -95,76 +259,107 @@
             color: white;
         }
 
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
+        /* =========================
+           RESPONSIVE
+        ========================= */
 
-        .btn-large {
-            padding: 1rem 3rem;
-            font-size: 1.125rem;
-            border-radius: 50px;
+        @media (max-width: 992px) {
+
+            .nav-links,
+            .nav-actions {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <header class="top-nav">
-        <a href="landing.html" class="nav-brand" style="text-decoration: none; color: white;">
-            <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
-        </a>
-        <nav class="nav-links">
-            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
-            <a href="ways-to-earn.html"><i class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
-            <a href="support.html"><i class="ri-question-answer-fill"></i><span>Support</span></a>
-        </nav>
-        <div class="nav-actions">
-            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
-            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+        <div class="nav-container">
+            <a href="landing.html" class="nav-brand">
+                CashiCoin<span>&lt;</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
+                <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
+                <a href="support.html"><i class="ri-customer-service-2-fill"></i> Support</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html" class="nav-btn btn-primary">Sign Up</a>
+                <a href="index.html" class="nav-btn btn-white">Login</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
+            <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
+            <a href="support.html"><i class="ri-customer-service-2-fill"></i> Support</a>
+        </div>
+
+        <div class="nav-overlay" id="navOverlay"></div>
     </header>
 
-    <main class="page-content">
-        <section class="hero-section">
-            <h1>How to Get Started</h1>
-            <p>Earning cash doesn't have to be complicated. Follow these simple steps and start turning your time into
-                real money today.</p>
-        </section>
+    <main>
+        <div class="page-content">
+            <section class="hero-section">
+                <h1>How to Get Started</h1>
+                <p>Earning cash doesn't have to be complicated. Follow these simple steps and start turning your time
+                    into real money today.</p>
+            </section>
 
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-icon">
-                    <i class="ri-user-add-fill"></i>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon"><i class="ri-user-add-fill"></i></div>
+                    <h3>1. Create an Account</h3>
+                    <p>Sign up for free using your email or social accounts.</p>
                 </div>
-                <h3>1. Create an Account</h3>
-                <p>Sign up for free using your email or social accounts. It takes less than a minute to join our
-                    community.</p>
+
+                <div class="step-card">
+                    <div class="step-icon"><i class="ri-survey-fill"></i></div>
+                    <h3>2. Complete Profile</h3>
+                    <p>Fill out your profile to match high-paying surveys and offers.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon"><i class="ri-exchange-dollar-fill"></i></div>
+                    <h3>3. Start Earning</h3>
+                    <p>Complete tasks and withdraw to PayPal once you hit the minimum.</p>
+                </div>
             </div>
 
-            <div class="step-card">
-                <div class="step-icon">
-                    <i class="ri-survey-fill"></i>
-                </div>
-                <h3>2. Complete Profile</h3>
-                <p>Fill out your profile so we can match you with the highest paying surveys, games, and offers suited
-                    just for you.</p>
-            </div>
-
-            <div class="step-card">
-                <div class="step-icon">
-                    <i class="ri-exchange-dollar-fill"></i>
-                </div>
-                <h3>3. Start Earning</h3>
-                <p>Complete tasks, play games, and share your opinion to earn real cash. Withdraw to PayPal once you hit
-                    the minimum.</p>
-            </div>
-        </div>
-
-        <div class="cta-section">
-            <h2>Ready to start making money?</h2>
-            <a href="index.html"><button class="nav-btn btn-primary btn-large">Join Now for Free</button></a>
-        </div>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navToggle = document.getElementById("navToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const navOverlay = document.getElementById("navOverlay");
+
+            navToggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("active");
+                navOverlay.classList.toggle("active");
+            });
+
+            navOverlay.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                navOverlay.classList.remove("active");
+            });
+        });
+    </script>
+
 </body>
 
 </html>
