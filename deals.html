@@ -104,6 +104,100 @@
             border-bottom-color: var(--primary);
         }
 
+        /* ===== MOBILE NAV ELEMENTS ===== */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1200;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background: #061022;
+            display: flex;
+            flex-direction: column;
+            padding: 8rem 2rem 2rem;
+            gap: 1.5rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            transition: 0.2s;
+        }
+
+        .mobile-menu a i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--primary);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 9999;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .nav-right {
             display: flex;
             align-items: center;
@@ -707,8 +801,26 @@
         }
 
         @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .top-bar {
+                padding: 0 1.5rem;
+            }
+
+            .nav-right .user-greeting,
+            .nav-right .balance-badge {
+                display: none;
+            }
+
             .hero-slider {
                 grid-template-columns: 1fr;
+                height: 320px;
             }
 
             .hero-right {
@@ -716,17 +828,56 @@
             }
 
             .hero-left {
-                padding: 3rem 2rem;
+                padding: 2rem;
                 text-align: center;
             }
 
             .hero-left h2 {
-                font-size: 3rem;
+                font-size: 2.2rem;
+            }
+
+            .main-container {
+                padding: 0 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 280px;
+            }
+
+            .hero-left h2 {
+                font-size: 1.8rem;
             }
 
             .hero-left p {
-                margin-left: auto;
-                margin-right: auto;
+                font-size: 0.9rem;
+            }
+
+            .tabs-kash {
+                overflow-x: auto;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .tab-kash-item {
+                white-space: nowrap;
+                padding: 0.8rem 1.25rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reward-box {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .btn-join {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -776,8 +927,27 @@
                     class="user-profile" alt="User"
                     onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=U&backgroundColor=061022'">
             </div>
+            <!-- Hamburger Toggle -->
+            <button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="dashboard.html"><i class="ri-gamepad-line"></i> Games</a>
+        <a href="deals.html" class="active"><i class="ri-percent-line"></i> Deals</a>
+        <a href="surveys.html"><i class="ri-file-list-3-line"></i> Surveys</a>
+        <a href="giveaway.html"><i class="ri-gift-line"></i> Giveaways</a>
+        <a href="shopping.html"><i class="ri-shopping-bag-line"></i> Shopping</a>
+        <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="#" onclick="toggleUserMenu()"><i class="ri-logout-box-r-line"></i> Log Out</a>
+        </div>
+    </div>
 
     <main class="main-container">
 
@@ -1054,6 +1224,22 @@
             if (confirm("Do you want to log out?")) {
                 sessionStorage.clear();
                 window.location.href = "index.html";
+            }
+        }
+
+        function toggleMobileMenu() {
+            const navToggle = document.getElementById('navToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navOverlay = document.getElementById('navOverlay');
+
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
             }
         }
 
