@@ -13,6 +13,249 @@
     <link rel="stylesheet" href="style.css">
     <!-- SEO tags -->
     <meta name="description" content="Sign in to your account and start earning rewards today.">
+    <style>
+        /* ===== REDESIGNED LEFT PANEL ===== */
+        .left-panel {
+            flex: 1.1;
+            background: linear-gradient(145deg, #061022 0%, #0a2240 50%, #063318 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* Glow orbs */
+        .lp-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .lp-orb-1 {
+            width: 350px;
+            height: 350px;
+            background: rgba(0, 209, 107, 0.18);
+            top: -80px;
+            left: -80px;
+        }
+
+        .lp-orb-2 {
+            width: 280px;
+            height: 280px;
+            background: rgba(79, 70, 229, 0.15);
+            bottom: 60px;
+            right: -60px;
+        }
+
+        /* Tagline strip */
+        .lp-tagline {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 209, 107, 0.12);
+            border: 1px solid rgba(0, 209, 107, 0.3);
+            color: #00D16B;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            z-index: 2;
+        }
+
+        .lp-dot {
+            width: 8px;
+            height: 8px;
+            background: #00D16B;
+            border-radius: 50%;
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        /* Headline */
+        .lp-headline {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .lp-headline h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .lp-headline p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .lp-highlight {
+            color: #00D16B;
+            position: relative;
+        }
+
+        /* Mascot visual area */
+        .lp-visual {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .lp-mascot {
+            width: 280px;
+            max-width: 80%;
+            filter: drop-shadow(0 30px 60px rgba(0, 209, 107, 0.3));
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        /* Win popup cards */
+        .lp-win-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 0.5rem 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: white;
+            font-size: 0.82rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            animation: popIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .lp-win-card span {
+            display: block;
+        }
+
+        .lp-win-name {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.75rem;
+        }
+
+        .lp-win-amount {
+            font-weight: 800;
+            color: #00D16B;
+            font-size: 0.9rem;
+        }
+
+        .lp-win-icon {
+            font-size: 1.4rem;
+            color: #00D16B;
+        }
+
+        .lp-win-1 {
+            top: 12%;
+            left: 0;
+            animation-delay: 1.5s;
+        }
+
+        .lp-win-2 {
+            bottom: 22%;
+            right: 0;
+            animation-delay: 2.2s;
+        }
+
+        .lp-win-3 {
+            top: 55%;
+            left: 2%;
+            animation-delay: 3s;
+        }
+
+        /* Stat strip */
+        .lp-stats {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            z-index: 2;
+        }
+
+        .lp-stat {
+            text-align: center;
+        }
+
+        .lp-stat strong {
+            display: block;
+            color: #00D16B;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .lp-stat span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .lp-stat-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 0.6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-panel {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -69,16 +312,118 @@
     </header>
     <div class="main-content">
         <div class="left-panel">
-            <div class="watermark">CashiCoin</div>
-            <div class="illustration-container">
-                <img src="assets/kashkick_ninja_clean.png" alt="A cartoon ninja sitting on a cliff with flying coins"
-                    class="hero-illustration" id="hero-img">
+            <!-- Background glow orbs -->
+            <div class="lp-orb lp-orb-1"></div>
+            <div class="lp-orb lp-orb-2"></div>
+
+            <!-- Top tagline -->
+            <div class="lp-tagline">
+                <span class="lp-dot"></span>
+                50,000+ members earning daily
+            </div>
+
+            <!-- Main headline -->
+            <div class="lp-headline">
+                <h2>Turn your spare<br>time into <span class="lp-highlight">real cash</span></h2>
+                <p>Games. Surveys. Shopping. It all pays.</p>
+            </div>
+
+            <!-- Mascot + floating cards -->
+            <div class="lp-visual">
+                <img src="assets/mascot.png" alt="CashiCoin Mascot" class="lp-mascot">
+
+                <!-- Floating win popups -->
+                <div class="lp-win-card lp-win-1">
+                    <div class="lp-win-icon"><i class="ri-money-dollar-circle-fill"></i></div>
+                    <div>
+                        <span class="lp-win-name">Sarah J.</span>
+                        <span class="lp-win-amount">Won $50!</span>
+                    </div>
+                </div>
+                <div class="lp-win-card lp-win-2">
+                    <div class="lp-win-icon"><i class="ri-money-dollar-circle-fill"></i></div>
+                    <div>
+                        <span class="lp-win-name">Mike D.</span>
+                        <span class="lp-win-amount">Won $100!</span>
+                    </div>
+                </div>
+                <div class="lp-win-card lp-win-3">
+                    <div class="lp-win-icon"><i class="ri-trophy-fill"></i></div>
+                    <div>
+                        <span class="lp-win-name">Alex R.</span>
+                        <span class="lp-win-amount">Won $200!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom stat strip -->
+            <div class="lp-stats">
+                <div class="lp-stat">
+                    <strong>$3.5M+</strong>
+                    <span>Paid Out</span>
+                </div>
+                <div class="lp-stat-divider"></div>
+                <div class="lp-stat">
+                    <strong>24h</strong>
+                    <span>Avg Payout</span>
+                </div>
+                <div class="lp-stat-divider"></div>
+                <div class="lp-stat">
+                    <strong>100+</strong>
+                    <span>Ways to Earn</span>
+                </div>
             </div>
         </div>
         <div class="right-panel">
+            <div class="bg-grid-overlay"></div>
+
+            <!-- Background Decorative Assets -->
+            <div class="reward-aura"></div>
+
+            <!-- Photographic Winner Feature -->
+            <div class="winner-photo-wrapper">
+                <img src="assets/trust_section_img.png" alt="Happy Winner" class="winner-photo">
+                <div class="winner-label">Top Earner This Week</div>
+            </div>
+            <div class="winner-ticker">
+                <div class="ticker-item">$50 WON</div>
+                <div class="ticker-item">$100 WON</div>
+                <div class="ticker-item">$25 WON</div>
+                <div class="ticker-item">$200 WON</div>
+                <div class="ticker-item">$75 WON</div>
+            </div>
+
+            <img src="assets/cart.png" alt="" class="bg-asset bg-cart">
+            <img src="assets/money.png" alt="" class="bg-asset bg-money">
+            <img src="assets/money.png" alt="" class="bg-asset bg-money-2">
+            <img src="assets/money.png" alt="" class="bg-asset bg-money-3">
+            <img src="assets/cart.png" alt="" class="bg-asset bg-cart-2">
+
             <div class="form-wrapper">
+                <div class="engagement-header">
+                    <div class="trust-badge">
+                        <i class="ri-shield-check-fill"></i>
+                        <span>Join 50,000+ members earning today</span>
+                    </div>
+                </div>
+
                 <div class="form-brand-large">
                     <span class="brand-text">CashiCoin</span><span class="brand-arrow">&lt;</span>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="ri-flashlight-fill"></i>
+                        <span>$5.00 Instant Signup Bonus</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="ri-timer-flash-line"></i>
+                        <span>Average payout in 24 hours</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="ri-gift-fill"></i>
+                        <span>100+ Daily ways to earn</span>
+                    </div>
                 </div>
 
                 <div class="social-login">
