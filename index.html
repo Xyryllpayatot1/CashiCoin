@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+
+  <!-- Instant redirect -->
+  <meta http-equiv="refresh" content="0; url=/auth">
+
+  <script>
+    // Backup redirect if meta refresh fails
+    window.location.replace("/auth");
+  </script>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#0b0f19;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      text-align:center;
+    }
+
+    .box{
+      background:#111827;
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    a{
+      color:#00d16b;
+      text-decoration:none;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Redirecting...</h2>
+    <p>If you are not redirected automatically, click below.</p>
+    <a href="/auth">Go to Login</a>
+  </div>
+</body>
+</html>
