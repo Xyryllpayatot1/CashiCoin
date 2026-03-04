@@ -100,6 +100,15 @@
             position: relative;
         }
 
+        /* Prevent white background bleed */
+        body {
+            background-color: #061022 !important;
+        }
+
+        .form-wrapper {
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
         /* Mascot visual area */
         .lp-visual {
             position: relative;
@@ -284,7 +293,7 @@
 
                 <div class="nav-actions">
                     <button id="navSignupDesktop" class="nav-btn btn-primary">Sign Up</button>
-                    <button id="navLoginDesktop" class="nav-btn btn-white">Login</button>
+                    <button id="navLoginDesktop" class="nav-btn btn-outline">Login</button>
                 </div>
             </div>
 
