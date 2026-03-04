@@ -1,2265 +1,302 @@
-<!DOCTYPE html>
-<html lang="en">
+export default function Home() {
+  return (
+    <main>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CashiCoin - Give Your Free Time a Raise</title>
-    <!-- Google Fonts: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <!-- Remixicons for Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-color: var(--bg-dark);
-            background-image: url('assets/background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
+      {/* NAVBAR */}
+      <header className="top-nav">
+        <div className="nav-container">
 
-        /* Large CTA for the center if they scroll down or need it */
-        .landing-cta {
-            padding: 1.25rem 3.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-radius: 50px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 8px 25px rgba(0, 209, 107, 0.5);
-            text-decoration: none;
-            display: inline-block;
-        }
+          <a href="/" className="nav-brand">
+            CashiCoin<span>&lt;</span>
+          </a>
 
-        .landing-cta:hover {
-            transform: translateY(-3px) scale(1.05);
-            background: var(--primary-hover);
-            box-shadow: 0 12px 30px rgba(0, 209, 107, 0.6);
-        }
+          <div className="nav-desktop">
+            <nav className="nav-links">
 
-        /* Add new structural classes */
-        .stats-bar {
-            background: #F8FAFC;
-            padding: 2rem 0;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+              <a href="/get-started">
+                <i className="ri-money-dollar-circle-fill"></i>
+                <span>Get Started</span>
+              </a>
 
-        .stat-item {
-            text-align: center;
-        }
+              <a href="/guide">
+                <i className="ri-book-open-fill"></i>
+                <span>Guide</span>
+              </a>
 
-        .stat-item h3 {
-            font-size: 2.25rem;
-            color: var(--primary);
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-        }
+              <a href="/support">
+                <i className="ri-question-fill"></i>
+                <span>Support</span>
+              </a>
 
-        .stat-item p {
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 1px;
-        }
+            </nav>
 
-        .section-padding {
-            padding: 6rem 2rem;
-        }
+            <div className="nav-actions">
+              <a href="/auth" className="btn-primary nav-btn">Sign Up</a>
+              <a href="/auth" className="btn-white nav-btn">Login</a>
+            </div>
 
-        .bg-white {
-            background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
-        }
+          </div>
 
-        .bg-primary {
-            background: var(--bg-dark);
-            color: white;
-        }
+        </div>
+      </header>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
+      {/* HERO */}
+      <section className="hero-landing-v3">
 
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 4rem;
-        }
+        <div className="hero-v3-content">
+          <h1>Give Your Free Time a Raise</h1>
 
-        .section-title.light {
-            color: white;
-        }
+          <p>
+            You're already gaming, browsing and sharing your opinions.
+            <br />
+            What if that time earned you real money?
+          </p>
+        </div>
 
-        .section-title.dark {
-            color: var(--bg-dark);
-        }
+        <div className="hero-v3-visual-group">
 
-        /* How it Works (Alternating) */
-        .hiw-step {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            margin-bottom: 6rem;
-        }
+          <img src="/assets/phone.png" alt="Phone App" className="hero-v3-phone" />
 
-        .hiw-step:last-child {
-            margin-bottom: 0;
-        }
+          <img src="/assets/tiktok logo.webp" alt="TikTok" className="scatter-icon scatter-tiktok" />
 
-        .hiw-step.reverse {
-            flex-direction: row-reverse;
-        }
+          <img src="/assets/ubereats.png" alt="Uber Eats" className="scatter-icon scatter-uber" />
 
-        .hiw-content {
-            flex: 1;
-        }
+          <img src="/assets/game1.webp" alt="Game" className="scatter-icon scatter-game1" />
 
-        .hiw-image {
-            flex: 1;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            min-height: 350px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-        }
+          <img src="/assets/laptop.png" alt="Laptop Dashboard" className="hero-v3-laptop" />
 
-        .hiw-image:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(0, 209, 107, 0.3);
-            box-shadow: 0 30px 60px rgba(0, 209, 107, 0.15);
-        }
+        </div>
 
-        .hiw-image::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(0, 209, 107, 0.1) 0%, transparent 60%);
-            z-index: 0;
-            pointer-events: none;
-        }
+        <div className="hero-v3-cta-wrap">
 
-        .hiw-icon-wrapper {
-            position: relative;
-            z-index: 1;
-            width: 140px;
-            height: 140px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 -5px 15px rgba(0, 0, 0, 0.1);
-        }
+          <div className="hero-cta-card">
 
-        .hiw-icon-wrapper i {
-            font-size: 5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, #008f49 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 10px rgba(0, 209, 107, 0.3));
-        }
+            <p className="hero-cta-tagline">
+              Small moves. Real Power.
+            </p>
 
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            font-size: 2rem;
-            font-weight: 800;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
+            <h2 className="hero-cta-heading">
+              Get Started for Free
+            </h2>
 
-        .hiw-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hiw-content p {
-            font-size: 1.125rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-        }
-
-        /* Feature Grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3rem;
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .feature-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #cbd5e1;
-            line-height: 1.6;
-        }
-
-        /* Ways to Earn Cards */
-        .earn-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .earn-card-clean {
-            background: white;
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .earn-card-clean:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 209, 107, 0.15);
-            border-color: var(--primary);
-        }
-
-        .earn-card-clean::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-            transform-origin: left;
-            z-index: -1;
-        }
-
-        .earn-card-clean:hover::before {
-            transform: scaleX(1);
-        }
-
-        .earn-card-clean i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .earn-card-clean:hover i {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .earn-card-clean h4 {
-            font-size: 1.5rem;
-            color: var(--bg-dark);
-            margin-bottom: 1rem;
-        }
-
-        .earn-card-clean p {
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* Trust CTA Section */
-        .trust-section {
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .trust-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4rem;
-            max-width: 900px;
-        }
-
-        .trust-image-wrapper {
-            flex: 0 0 320px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .trust-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .trust-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .trust-content h2 {
-            font-size: 2.75rem;
-            font-weight: 800;
-            color: var(--bg-dark);
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            letter-spacing: -0.5px;
-        }
-
-        .trust-cta {
-            background-color: var(--primary);
-            color: white;
-            font-size: 1.125rem;
-            font-weight: 700;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(0, 209, 107, 0.3);
-        }
-
-        .trust-cta:hover {
-            transform: translateY(-2px);
-            background-color: var(--primary-hover);
-            box-shadow: 0 10px 20px rgba(0, 209, 107, 0.4);
-        }
-
-        /* Benefits Section */
-        .bg-benefits {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #004d28 100%);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .benefit-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 209, 107, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 209, 107, 0.15);
-        }
-
-        .benefit-card i {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            text-shadow: 0 4px 10px rgba(0, 209, 107, 0.3);
-        }
-
-        .benefit-card h4 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .benefit-card p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        @media (max-width: 768px) {
-            .hero-landing h1 {
-                font-size: 3rem;
-            }
-
-            .hero-landing p {
-                font-size: 1.1rem;
-            }
-
-            .feature-grid,
-            .benefits-grid,
-            .earn-cards {
-                grid-template-columns: 1fr;
-            }
-
-            /* HOW IT WORKS - Mobile Premium Card Layout */
-            .hiw-step {
-                flex-direction: column !important;
-                align-items: stretch;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 24px;
-                padding: 2rem 1.5rem;
-                margin-bottom: 1.25rem;
-                gap: 1.5rem;
-                backdrop-filter: blur(8px);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .hiw-step::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 3px;
-                background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
-                border-radius: 24px 24px 0 0;
-            }
-
-            .hiw-step:nth-child(even) {
-                flex-direction: column !important;
-            }
-
-            .hiw-content {
-                text-align: left;
-                order: 2;
-            }
-
-            .hiw-content h3 {
-                font-size: 1.4rem;
-                color: white;
-                margin-bottom: 0.6rem;
-            }
-
-            .hiw-content p {
-                font-size: 0.9rem;
-                color: rgba(255, 255, 255, 0.65);
-                line-height: 1.6;
-            }
-
-            .step-number {
-                width: 44px;
-                height: 44px;
-                font-size: 1.2rem;
-                box-shadow: 0 0 16px rgba(0, 209, 107, 0.4);
-                margin-bottom: 0.75rem;
-            }
-
-            .hiw-image {
-                order: 1;
-                min-height: 110px;
-                border-radius: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .hiw-icon-wrapper {
-                width: 90px;
-                height: 90px;
-                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2),
-                    0 0 0 6px rgba(0, 209, 107, 0.12);
-            }
-
-            .hiw-icon-wrapper i {
-                font-size: 3rem;
-            }
-
-            .trust-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 2.5rem;
-            }
-
-            .trust-content {
-                align-items: center;
-            }
-
-            .trust-content h2 {
-                font-size: 2.25rem;
-            }
-
-            .footer-bottom-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: #061022;
-            /* Even darker Navy */
-            color: white;
-            padding: 4rem 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            display: block;
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-links h5 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* ===== PREMIUM FOOTER (KASHKICK STYLE) ===== */
-        .premium-footer {
-            background: linear-gradient(135deg, #16a34a 0%, #2563eb 100%);
-            color: white;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Footer CTA Cards */
-        .trust-cta-modern {
-            background: white;
-            padding: 8rem 2rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .cta-modern-container {
-            max-width: 1000px;
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .cta-modern-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .cta-modern-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        .cta-modern-content {
-            flex: 1.2;
-            text-align: left;
-        }
-
-        .cta-modern-content h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: #1e293b;
-            margin-bottom: 2rem;
-            letter-spacing: -1px;
-        }
-
-        .cta-modern-content h2 span {
-            display: block;
-        }
-
-        .btn-modern-cta {
-            background: #00d97e;
-            /* Vibrant Green */
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 217, 126, 0.2);
-        }
-
-        .btn-modern-cta:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 217, 126, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .cta-modern-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .cta-modern-content {
-                text-align: center;
-            }
-
-            .cta-modern-content h2 {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Lower Footer Links */
-        .footer-bottom-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 2fr;
-            gap: 4rem;
-            padding-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-brand-side {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .footer-logo-left {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 3rem;
-            letter-spacing: -2px;
-        }
-
-        .footer-logo-left span {
-            color: #10b981;
-        }
-
-        .footer-app-box h5 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .app-links-small {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .app-link-icon {
-            background: white;
-            color: #1e293b;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .social-row {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-circle {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-circle:hover {
-            border-color: white;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links-side {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .link-col h6 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .link-col ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .link-col li {
-            margin-bottom: 0.8rem;
-        }
-
-        .link-col a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .link-col a:hover {
-            color: white;
-        }
-
-        .footer-legal-copy {
-            text-align: center;
-            margin-top: 6rem;
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 992px) {
-            .footer-cta-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .footer-links-side {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .footer-links-side {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: #64748b;
-        }
-
-        /* ABOUT SECTION */
-        .about-section {
-            background: white;
-            padding: 8rem 2rem;
-        }
-
-        .about-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-container h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #16a34a, #2563eb);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .about-container h3 {
-            font-size: 1.5rem;
-            color: #16a34a;
-            margin-bottom: 2rem;
-        }
-
-        .about-container p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ===== PREMIUM ABOUT SECTION (KASHKICK STYLE) ===== */
-
-        .about-clean {
-            background: white;
-            padding: 8rem 2rem;
-        }
-
-        .about-clean-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-title {
-            font-size: 3.2rem;
-            font-weight: 800;
-            color: #16a34a;
-            /* Green */
-            margin-bottom: 3rem;
-        }
-
-        .about-circle {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 2.5rem;
-            border-radius: 50%;
-            background: #eaf4f3;
-            /* Soft Green/Blue background */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .about-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .about-tagline {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: linear-gradient(90deg, #16a34a, #2563eb);
-            /* Green to Blue gradient */
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-text {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #212121;
-            margin-bottom: 1.5rem;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 4rem 2rem 8rem;
-            background: white;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-header {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #16a34a;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #e2e8f0;
-            padding: 1.5rem 0;
-        }
-
-        .faq-question {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-align: left;
-            padding: 0;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #16a34a;
-            transition: color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            color: #2563eb;
-        }
-
-        .faq-question i {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
-            color: #475569;
-            line-height: 1.7;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 1000px;
-            /* Large enough to fit content */
-            padding-top: 1.5rem;
-        }
-
-        .faq-answer p {
-            margin-bottom: 1.5rem;
-        }
-
-        .faq-answer p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ===============================
-   🔥 REAL MOBILE OPTIMIZATION
-   =============================== */
-
-        @media (max-width: 768px) {
-
-            /* Remove heavy background attachment (fixes lag on iOS) */
-            body {
-                background-attachment: scroll;
-            }
-
-            /* HERO */
-            .hero-landing {
-                min-height: auto;
-                padding: 5rem 1.5rem 4rem;
-            }
-
-            .hero-landing h1 {
-                font-size: 2.4rem;
-                line-height: 1.15;
-            }
-
-            .hero-landing p {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .landing-cta {
-                width: 100%;
-                max-width: 320px;
-                padding: 1rem;
-                font-size: 1.1rem;
-            }
-
-            /* Hide floating logos on mobile (cleaner + faster) */
-            .floating-logo {
-                display: none;
-            }
-
-            /* STATS */
-            .stats-bar {
-                flex-direction: column;
-                gap: 2rem;
-                padding: 3rem 1rem;
-            }
-
-            .stat-item h3 {
-                font-size: 1.8rem;
-            }
-
-            /* HOW IT WORKS */
-            .section-padding {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 3rem;
-            }
-
-            .hiw-step {
-                margin-bottom: 4rem;
-                gap: 1.5rem;
-            }
-
-            .hiw-content h3 {
-                font-size: 1.6rem;
-            }
-
-            .hiw-content p {
-                font-size: 0.95rem;
-            }
-
-            .hiw-image {
-                min-height: 220px;
-                border-radius: 20px;
-            }
-
-            /* BENEFITS */
-            .benefit-card {
-                padding: 2rem 1.2rem;
-            }
-
-            .benefit-card h4 {
-                font-size: 1.2rem;
-            }
-
-            /* EARN CARDS */
-            .earn-card-clean {
-                padding: 2rem 1.2rem;
-            }
-
-            .earn-card-clean h4 {
-                font-size: 1.3rem;
-            }
-
-            .earn-card-clean p {
-                font-size: 0.95rem;
-            }
-
-            /* TRUST CTA */
-            .cta-modern-content h2 {
-                font-size: 1.9rem;
-                line-height: 1.2;
-            }
-
-            .btn-modern-cta {
-                width: 100%;
-                max-width: 260px;
-                padding: 0.9rem;
-            }
-
-            /* ABOUT */
-            .about-clean {
-                padding: 5rem 1.5rem;
-            }
-
-            .about-title {
-                font-size: 2rem;
-            }
-
-            .about-circle {
-                width: 200px;
-                height: 200px;
-            }
-
-            .about-tagline {
-                font-size: 1.2rem;
-            }
-
-            .about-text p {
-                font-size: 0.95rem;
-            }
-
-            /* FAQ */
-            .faq-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .faq-header {
-                font-size: 1.8rem;
-                text-align: center;
-            }
-
-            .faq-question {
-                font-size: 1rem;
-            }
-
-            /* FOOTER */
-            .footer-logo-left {
-                font-size: 2.2rem;
-            }
-
-            .footer-legal-copy {
-                margin-top: 3rem;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* ===============================
-           🔥 PREMIUM NAV SYSTEM (FIXED)
-           =============================== */
-
-        .top-nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            padding: 1.5rem 5rem;
-            backdrop-filter: blur(16px);
-            background: rgba(6, 16, 34, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            gap: 4rem;
-        }
-
-        .nav-brand {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -1.5px;
-            flex-shrink: 0;
-        }
-
-        .nav-brand span {
-            color: var(--primary);
-        }
-
-        .nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            flex-shrink: 0;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3.5rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            opacity: 0.85;
-            transition: 0.3s;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .nav-links a i {
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 110px;
-            height: 44px;
-            padding: 0 1.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        /* Hamburger */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .nav-toggle span {
-            width: 28px;
-            height: 3px;
-            background: white;
-            border-radius: 3px;
-            transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Mobile Menu Content */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: #061022;
-            display: flex;
-            flex-direction: column;
-            padding: 8rem 2rem;
-            gap: 2rem;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1100;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-cta {
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .btn-outline {
-            border: 2px solid white;
-            color: white;
-            padding: 0.8rem;
-            border-radius: 40px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .mobile-back-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            opacity: 0.7;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: 0.3s;
-        }
-
-        .mobile-back-btn:hover {
-            opacity: 1;
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: var(--bg-dark);
-        }
-
-        /* Overlay */
-        .nav-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 1000;
-        }
-
-        .nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Mobile Breakpoint */
-        @media (max-width: 1024px) {
-            .top-nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-desktop {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-        }
-
-        /* Push content down precisely */
-        main {
-            margin-top: 1px;
-        }
-
-        /* ===============================
-   CLEAN HERO V3 (FINAL)
-=============================== */
-
-        .hero-landing-v3 {
-            position: relative;
-            min-height: 100vh;
-            padding: 6rem 2rem 4rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-v3-content {
-            position: absolute;
-            top: 90px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 850px;
-            z-index: 20;
-            text-align: center;
-            width: 90%;
-        }
-
-        .hero-v3-content h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-v3-content p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-v3-visual-group {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            height: 600px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 140px auto 0;
-        }
-
-        .hero-v3-laptop {
-            width: 800px;
-            max-width: 95%;
-            margin: 0 auto;
-            display: block;
-            position: relative;
-            z-index: 5;
-            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
-        }
-
-        .hero-v3-phone {
-            position: absolute;
-            left: 6%;
-            bottom: 40px;
-            /* Moved up slightly */
-            width: 240px;
-            z-index: 6;
-            background: transparent !important;
-            mix-blend-mode: multiply;
-            filter: contrast(1.2) brightness(1.2);
-            /* Enhanced to remove white more aggressively */
-            animation: floating 6s ease-in-out infinite;
-            animation-delay: 0.3s;
-        }
-
-        .hero-v3-card-uber {
-            position: absolute;
-            right: 6%;
-            top: 40px;
-            width: 180px;
-            z-index: 7;
-        }
-
-        .hero-v3-icon-tiktok {
-            position: absolute;
-            left: 8%;
-            bottom: 0;
-            width: 110px;
-            z-index: 7;
-        }
-
-        .hero-v3-bg-game1,
-        .hero-v3-bg-game2 {
-            display: none;
-            /* Hide the blurred background versions */
-        }
-
-        .scatter-icon {
-            position: absolute;
-            object-fit: contain;
-            border-radius: 20px;
-            padding: 10px;
-            z-index: 10;
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        .scatter-game1 {
-            width: 140px;
-            height: auto;
-            bottom: 5%;
-            right: 8%;
-            animation-delay: 1s;
-        }
-
-        .scatter-game2 {
-            display: none;
-        }
-
-        .scatter-tiktok {
-            width: 100px;
-            height: auto;
-            bottom: 0%;
-            left: 8%;
-            animation-delay: 2s;
-            background: black;
-        }
-
-        .scatter-uber {
-            width: 120px;
-            height: auto;
-            top: 40%;
-            right: 12%;
-            animation-delay: 0.5s;
-            background: #00d16b;
-        }
-
-        @keyframes floating {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(2deg);
-            }
-
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            /* Hero section adjustments */
-            .hero-landing-v3 {
-                padding: 7rem 1.5rem 3rem;
-            }
-
-            /* Hide the laptop on mobile */
-            .hero-v3-laptop {
-                display: none;
-            }
-
-            /* Show the phone as the main visual on mobile */
-            .hero-v3-visual-group {
-                height: 420px;
-                margin-top: 1.5rem;
-                width: 100%;
-            }
-
-            .hero-v3-phone {
-                display: block;
-                position: relative;
-                left: auto;
-                bottom: auto;
-                width: 220px;
-                margin: 0 auto;
-                z-index: 6;
-                mix-blend-mode: multiply;
-                filter: contrast(1.2) brightness(1.2);
-                animation: floating 6s ease-in-out infinite;
-                animation-delay: 0.3s;
-            }
-
-            /* Reposition scatter icons around the phone */
-            .scatter-tiktok {
-                width: 75px;
-                height: auto;
-                left: 2%;
-                bottom: 20%;
-                top: auto;
-                animation-delay: 2s;
-            }
-
-            .scatter-uber {
-                width: 85px;
-                height: auto;
-                right: 2%;
-                top: 30%;
-                animation-delay: 0.5s;
-            }
-
-            .scatter-game1 {
-                width: 90px;
-                height: auto;
-                right: 5%;
-                bottom: 5%;
-                top: auto;
-                animation-delay: 1s;
-            }
-
-            /* Remove the absolutely positioned text content on mobile */
-            .hero-v3-content {
-                position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
-                width: 100%;
-                max-width: 100%;
-                text-align: center;
-            }
-
-            .hero-v3-content h1 {
-                font-size: 2.8rem;
-                line-height: 1.1;
-            }
-
-            .hero-v3-content p {
-                font-size: 1rem;
-            }
-
-            /* CTA card on mobile */
-            .hero-cta-card {
-                padding: 1.5rem 1.5rem;
-            }
-
-            .hero-cta-heading {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* ===== HERO CTA CARD ===== */
-        .hero-cta-card {
-            background: linear-gradient(135deg, rgba(6, 16, 34, 0.85) 0%, rgba(6, 16, 34, 0.7) 100%);
-            border: 1px solid rgba(0, 209, 107, 0.35);
-            border-radius: 24px;
-            backdrop-filter: blur(12px);
-            padding: 2rem 3rem;
-            text-align: center;
-            max-width: 520px;
-            margin: 0 auto;
-            box-shadow: 0 0 40px rgba(0, 209, 107, 0.1), 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-cta-tagline {
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            margin-bottom: 0.4rem;
-        }
-
-        .hero-cta-heading {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-cta-pill {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--dark);
-            font-size: 1.05rem;
-            font-weight: 800;
-            padding: 0.85rem 2.5rem;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-            box-shadow: 0 6px 24px rgba(0, 209, 107, 0.35);
-        }
-
-        .hero-cta-pill:hover {
-            background: var(--primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(0, 209, 107, 0.5);
-        }
-    </style>
-</head>
-
-<body>
-    <header class="top-nav">
-        <div class="nav-container">
-
-            <a href="landing.html" class="nav-brand">
-                CashiCoin<span>&lt;</span>
+            <a href="/auth" className="hero-cta-pill">
+              Start Earning Now
             </a>
 
-            <!-- Desktop Nav -->
-            <div class="nav-desktop">
-                <nav class="nav-links">
-                    <a href="get-started.html">
-                        <i class="ri-money-dollar-circle-fill"></i>
-                        <span>Get Started</span>
-                    </a>
-                    <a href="ways-to-earn.html">
-                        <i class="ri-book-open-fill"></i>
-                        <span>Guide</span>
-                    </a>
-                    <a href="support.html">
-                        <i class="ri-question-fill"></i>
-                        <span>Support</span>
-                    </a>
-                </nav>
-
-                <div class="nav-actions">
-                    <a href="index.html" class="btn-primary nav-btn">Sign Up</a>
-                    <a href="index.html" class="btn-white nav-btn">Login</a>
-                </div>
-            </div>
-
-            <!-- Hamburger -->
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+          </div>
 
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i> Get Started</a>
-            <a href="ways-to-earn.html"><i class="ri-book-open-fill"></i> Guide</a>
-            <a href="support.html"><i class="ri-question-fill"></i> Support</a>
+      </section>
 
-            <div class="mobile-cta">
-                <a href="index.html" class="btn-primary">Sign Up</a>
-                <a href="index.html" class="btn-outline">Login</a>
-            </div>
+      {/* STATS */}
+      <section className="stats-bar">
+
+        <div className="stat-item">
+          <h3>3,500,000+</h3>
+          <p>Active Members</p>
         </div>
 
-        <div class="nav-overlay" id="navOverlay"></div>
-    </header>
-    <main>
-        <!-- Full Screen Hero V3 -->
-        <section class="hero-landing-v3">
-            <div class="hero-v3-content">
-                <h1 class="fade-in-up animate" style="transition-delay: 0.5s;">Give Your Free Time a Raise</h1>
-                <p class="fade-in-up animate" style="transition-delay: 0.7s;">You're already gaming, browsing and
-                    sharing your opinions.<br>What if that time earned you real money?</p>
+        <div className="stat-item">
+          <h3>$2,678,765+</h3>
+          <p>Paid Last Month</p>
+        </div>
+
+        <div className="stat-item">
+          <h3>1-3 Days</h3>
+          <p>Fast Payouts</p>
+        </div>
+
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="section-padding bg-primary">
+
+        <div className="container">
+
+          <h2 className="section-title light">
+            How CashiCoin Works
+          </h2>
+
+          <div className="hiw-step">
+
+            <div className="hiw-content">
+              <div className="step-number">1</div>
+
+              <h3>Sign Up for Free</h3>
+
+              <p>
+                Join millions of users turning spare time into real money.
+                Create your free profile and start earning instantly.
+              </p>
+
             </div>
 
-            <div class="hero-v3-visual-group scale-in animate" style="transition-delay: 0.2s; margin-top: -50px;">
-                <!-- Main Phone (Left) -->
-                <img src="assets/phone.png" alt="Phone App" class="hero-v3-phone">
-
-                <!-- Scattered Icons -->
-                <img src="assets/tiktok%20logo.webp" alt="TikTok" class="scatter-icon scatter-tiktok">
-                <img src="assets/ubereats.png" alt="Uber Eats" class="scatter-icon scatter-uber">
-                <img src="assets/game1.webp" alt="Merge Gardens" class="scatter-icon scatter-game1">
-
-                <!-- Main Laptop -->
-                <img src="assets/laptop.png" alt="Laptop Dashboard" class="hero-v3-laptop">
+            <div className="hiw-image">
+              <div className="hiw-icon-wrapper">
+                <i className="ri-user-add-fill"></i>
+              </div>
             </div>
 
-            <div class="hero-v3-cta-wrap fade-in-up animate"
-                style="transition-delay: 1.2s; z-index: 25; margin-top: 2.5rem;">
-                <div class="hero-cta-card">
-                    <p class="hero-cta-tagline">Small moves. Real Power.</p>
-                    <h2 class="hero-cta-heading">Get Started for Free</h2>
-                    <a href="index.html" class="hero-cta-pill">Start Earning Now</a>
-                </div>
+          </div>
+
+          <div className="hiw-step reverse">
+
+            <div className="hiw-content">
+              <div className="step-number">2</div>
+
+              <h3>Complete Fun Tasks</h3>
+
+              <p>
+                Play games, take surveys and complete offers
+                to start stacking rewards.
+              </p>
+
             </div>
-        </section>
 
-        <!-- Stats Bar -->
-        <section class="stats-bar">
-            <div class="stat-item reveal delay-100">
-                <h3 class="count-up" data-target="3500000" data-suffix="+">0</h3>
-                <p>Active Members</p>
+            <div className="hiw-image">
+              <div className="hiw-icon-wrapper">
+                <i className="ri-gamepad-fill"></i>
+              </div>
             </div>
-            <div class="stat-item reveal delay-200">
-                <h3 class="count-up" data-target="2678765" data-prefix="$" data-suffix="+">0</h3>
-                <p>Paid Last Month</p>
+
+          </div>
+
+          <div className="hiw-step">
+
+            <div className="hiw-content">
+              <div className="step-number">3</div>
+
+              <h3>Cash Out Quickly</h3>
+
+              <p>
+                Withdraw your balance to PayPal or gift cards
+                once you reach the minimum payout.
+              </p>
+
             </div>
-            <div class="stat-item reveal delay-300">
-                <h3 class="count-up" data-target="3" data-prefix="1-" data-suffix=" Days">0</h3>
-                <p>Fast Payouts</p>
+
+            <div className="hiw-image">
+              <div className="hiw-icon-wrapper">
+                <i className="ri-paypal-fill"></i>
+              </div>
             </div>
-        </section>
 
-        <!-- How It Works -->
-        <section class="section-padding bg-primary">
-            <div class="container">
-                <h2 class="section-title light">How CashiCoin Works</h2>
+          </div>
 
-                <div class="hiw-step reveal">
-                    <div class="hiw-content reveal-left">
-                        <div class="step-number">1</div>
-                        <h3>Sign Up for Free</h3>
-                        <p>Join millions of users turning their spare time into real money. Create your profile entirely
-                            for free and immediately get access to hundreds of high-paying offers matched specifically
-                            to you.</p>
-                    </div>
-                    <div class="hiw-image reveal-right">
-                        <div class="hiw-icon-wrapper float-main">
-                            <i class="ri-user-add-fill"></i>
-                        </div>
-                    </div>
-                </div>
+        </div>
 
+      </section>
 
-                <div class="hiw-step reverse reveal">
-                    <div class="hiw-content reveal-right">
-                        <div class="step-number">2</div>
-                        <h3>Complete Fun Tasks</h3>
-                        <p>Whether you love playing the latest mobile games, testing out new apps, or sharing your
-                            opinion through short surveys, there's always a fun way to stack up cash on your dashboard.
-                        </p>
-                    </div>
-                    <div class="hiw-image reveal-left">
-                        <div class="hiw-icon-wrapper float-main" style="animation-delay: 1s;">
-                            <i class="ri-gamepad-fill"></i>
-                        </div>
-                    </div>
-                </div>
+      {/* CTA */}
+      <section className="trust-cta-modern">
 
-                <div class="hiw-step reveal">
-                    <div class="hiw-content reveal-left">
-                        <div class="step-number">3</div>
-                        <h3>Cash Out Quickly</h3>
-                        <p>No more waiting weeks for physical checks or dealing with impossible withdrawal minimums.
-                            Once you hit the small threshold, transfer your funds straight to PayPal or choose from top
-                            gift cards.</p>
-                    </div>
-                    <div class="hiw-image reveal-right">
-                        <div class="hiw-icon-wrapper float-main" style="animation-delay: 2s;">
-                            <i class="ri-paypal-fill"></i>
-                        </div>
-                    </div>
-                </div>
+        <div className="cta-modern-container">
+
+          <div className="cta-modern-image">
+            <img src="/assets/trust_section_img.png" alt="User" />
+          </div>
+
+          <div className="cta-modern-content">
+
+            <h2>
+              No confusing points.
+              <br />
+              No gimmicks.
+              <br />
+              Just real rewards.
+            </h2>
+
+            <a href="/auth" className="btn-modern-cta">
+              Make My First $1
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* BENEFITS */}
+      <section className="section-padding bg-benefits">
+
+        <div className="container">
+
+          <h2 className="section-title light">
+            Why people choose CashiCoin
+          </h2>
+
+          <div className="benefits-grid">
+
+            <div className="benefit-card">
+              <i className="ri-money-dollar-circle-fill"></i>
+              <h4>Low payout threshold</h4>
+              <p>Cash out starting from $10.</p>
             </div>
-        </section>
 
-
-
-        <!-- Modern Trust CTA -->
-        <section class="trust-cta-modern">
-            <div class="cta-modern-container reveal">
-                <div class="cta-modern-image reveal-left">
-                    <img src="assets/trust_section_img.png" alt="Happy CashCoin User">
-                </div>
-                <div class="cta-modern-content reveal-right">
-                    <h2>No confusing points.<br>No gimmicks.<br>Just real rewards.</h2>
-                    <a href="index.html" class="btn-modern-cta">Make My First $1</a>
-                </div>
+            <div className="benefit-card">
+              <i className="ri-check-line"></i>
+              <h4>Earn your way</h4>
+              <p>Games, surveys, offers and shopping rewards.</p>
             </div>
-        </section>
 
-
-        <!-- Benefits Section -->
-        <section class="section-padding bg-benefits">
-            <div class="container">
-                <h2 class="section-title light" style="margin-bottom: 3rem;">Here's why millions choose CashiCoin:</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card reveal delay-100">
-                        <i class="ri-money-dollar-circle-fill"></i>
-                        <h4>Low payout<br>threshold</h4>
-                        <p>Start kashing out at just $10. No<br>waiting. No training.</p>
-                    </div>
-                    <div class="benefit-card reveal delay-200">
-                        <i class="ri-check-line"></i>
-                        <h4>Earn your way</h4>
-                        <p>Pick your path: surveys, games, deals<br>or online shopping.</p>
-                    </div>
-                    <div class="benefit-card reveal delay-300">
-                        <i class="ri-calendar-event-fill"></i>
-                        <h4>Fast, reliable<br>payouts</h4>
-                        <p>Real members. Real kash. Delivered<br>fast. Most payments arrive within 1-<br>3 business
-                            days. Easy.</p>
-                    </div>
-                </div>
+            <div className="benefit-card">
+              <i className="ri-calendar-event-fill"></i>
+              <h4>Fast payouts</h4>
+              <p>Most payments arrive within 1-3 business days.</p>
             </div>
-        </section>
 
+          </div>
 
-        <!-- Ways to Earn -->
-        <section class="section-padding bg-white">
-            <div class="container">
-                <h2 class="section-title dark">Multiple Ways to Earn</h2>
-                <div class="earn-cards">
-                    <div class="earn-card-clean reveal delay-100">
-                        <i class="ri-sword-fill"></i>
-                        <h4>Play Games</h4>
-                        <p>Download free mobile games, reach specific levels, and get paid directly to your account. The
-                            higher you level up, the more you earn.</p>
-                    </div>
-                    <div class="earn-card-clean reveal delay-200">
-                        <i class="ri-question-answer-fill"></i>
-                        <h4>Take Surveys</h4>
-                        <p>Brands want to hear from you. Spend 5-10 minutes answering questions about your favorite
-                            products and earn easy cash instantly.</p>
-                    </div>
-                    <div class="earn-card-clean reveal delay-300">
-                        <i class="ri-shopping-bag-3-fill"></i>
-                        <h4>Special Offers</h4>
-                        <p>Get paid to sign up for free trials, test out new subscription boxes, or simply browse
-                            partner websites.</p>
-                    </div>
-                </div>
+        </div>
 
-                <section class="about-clean">
-                    <div class="about-clean-container reveal">
+      </section>
 
-                        <h2 class="about-title reveal-scale">About CashCoin</h2>
+      {/* FOOTER */}
+      <footer className="premium-footer">
 
-                        <div class="about-circle reveal-scale">
-                            <img src="assets/logo.png" alt="CashCoin Ninja">
-                        </div>
+        <div className="footer-container">
 
-                        <div class="about-tagline reveal">
-                            Turning everyday moments into milestones.
-                        </div>
+          <div className="footer-bottom-grid">
 
-                        <div class="about-text reveal">
-                            <p>
-                                Since our start in 2017, we've been dedicated to giving people smarter ways to engage
-                                with the digital world.
-                                CashCoin is built on one simple idea: everyday actions can create real opportunities.
-                            </p>
+            <div className="footer-brand-side">
 
-                            <p>
-                                We know financial growth doesn't happen overnight—it's built through small, consistent
-                                moves that add up over time.
-                                At CashCoin, it's not just about what you do; it's about how those choices open doors to
-                                a future defined on your own terms.
-                            </p>
-                        </div>
+              <a href="/" className="footer-logo-left">
+                CashiCoin<span>&lt;</span>
+              </a>
 
-                    </div>
-                </section>
+              <div className="footer-app-box">
 
-                <!-- FAQ Section -->
-                <section class="faq-section">
-                    <div class="faq-container reveal">
-                        <h2 class="faq-header">FAQ</h2>
+                <h5>Get The CashiCoin App</h5>
 
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>How fast do I get paid?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Once you've earned enough to reach the minimum cashout threshold of
-                                    <strong>$10</strong>, you can request a payment to your <strong>PayPal
-                                        account</strong> or choose to kash out via <strong>gift cards</strong>. After
-                                    you submit your request, a member of the CashCoin team personally reviews and
-                                    approves the withdrawal, typically within <strong>1 to 3 business days</strong>.
-                                    Most payouts are approved within a single day, though weekends and holidays may
-                                    cause slight delays.
-                                </p>
-                                <p>Keep in mind, many offers and game milestones have a <strong>pending period</strong>
-                                    before the kash is applied to your account. This is usually between <strong>1 to 31
-                                        days</strong>, with an average around <strong>14 days</strong>. That's because
-                                    CashCoin needs to verify your activity with third-party partners to confirm their
-                                    requirements are met (no one likes fraud, right?). Once it's cleared and your
-                                    balance hits $10 or more, your kash is ready to go. Real money, no mystery, no
-                                    nonsense.</p>
-                            </div>
-                        </div>
+                <div className="app-links-small">
 
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>Do I need a PayPal account?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>While PayPal is our most popular payout method, we also offer Various gift card
-                                    options. However, a verified PayPal account is recommended for the fastest and most
-                                    flexible cash out experience.</p>
-                            </div>
-                        </div>
+                  <a href="#" className="app-link-icon">
+                    <i className="ri-apple-fill"></i>
+                    App Store
+                  </a>
 
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>Is CashCoin legit?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Absolutely! We've paid out millions of dollars to our members. Our partnerships with
-                                    major brands and game developers allow us to pass those rewards directly to you.</p>
-                            </div>
-                        </div>
+                  <a href="#" className="app-link-icon">
+                    <i className="ri-google-play-fill"></i>
+                    Google Play
+                  </a>
 
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>Is CashCoin really free?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Yes, joining and using CashCoin is 100% free. We get paid by our partners when you
-                                    engage with their offers, and we share that revenue with you.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>Which countries is CashCoin available in?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Currently, CashCoin is primarily available to users in the United States. We are
-                                    actively working on expanding to more regions soon!</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>How secure is CashCoin?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>We take security very seriously. We use industry-standard encryption and security
-                                    protocols to protect your data and ensure your earnings are safe.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>Is my data safe?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Your privacy is our priority. We only share necessary data with partners to track
-                                    offer completions, and we never sell your personal information to third parties.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>What if I'm not a ninja yet?</span>
-                                <i class="ri-arrow-down-s-line"></i>
-                            </button>
-                            <div class="faq-answer">
-                                <p>No worries! Everyone starts somewhere. As you complete more tasks and level up,
-                                    you'll master the art of earning and become a CashCoin ninja in no time.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="premium-footer" style="padding-top: 5rem;">
-            <div class="footer-container">
-
-                <!-- Footer Bottom Part -->
-                <div class="footer-bottom-grid">
-                    <div class="footer-brand-side">
-                        <a href="#" class="footer-logo-left">CashCoin<span>&lt;</span></a>
-
-                        <div class="footer-app-box">
-                            <h5>Get The CashCoin App</h5>
-                            <div class="app-links-small">
-                                <a href="#" class="app-link-icon">
-                                    <i class="ri-apple-fill"></i>
-                                    App Store
-                                </a>
-                                <a href="#" class="app-link-icon">
-                                    <i class="ri-google-play-fill"></i>
-                                    Google Play
-                                </a>
-                            </div>
-                            <div class="social-row">
-                                <a href="#" class="social-circle"><i class="ri-tiktok-fill"></i></a>
-                                <a href="#" class="social-circle"><i class="ri-instagram-line"></i></a>
-                                <a href="#" class="social-circle"><i class="ri-facebook-circle-fill"></i></a>
-                                <a href="#" class="social-circle"><i class="ri-twitter-x-fill"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="footer-links-side">
-                        <div class="link-col">
-                            <h6>Guide</h6>
-                            <ul>
-                                <li><a href="#">Earn</a></li>
-                                <li><a href="#">Invest</a></li>
-                                <li><a href="#">Save</a></li>
-                                <li><a href="#">Side Hustles</a></li>
-                                <li><a href="#">Mastering CashCoin</a></li>
-                                <li><a href="#">Game Tips</a></li>
-                                <li><a href="#">Reviews</a></li>
-                            </ul>
-                        </div>
-                        <div class="link-col">
-                            <h6>Ways to Make Money</h6>
-                            <ul>
-                                <li><a href="#">Games</a></li </ul>
-                        </div>
-                        <div class="link-col">
-                            <h6>Resources</h6>
-                            <ul>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                                <li><a href="#">California Privacy Rights</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="footer-legal-copy">
-                    All Rights Reserved By CashCoin
-                </div>
+              </div>
+
             </div>
-        </footer>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
+          </div>
 
-                /* ===============================
-                   🔥 MOBILE NAV
-                =============================== */
+          <div className="footer-legal-copy">
+            All Rights Reserved By CashiCoin
+          </div>
 
-                const navToggle = document.getElementById("navToggle");
-                const mobileMenu = document.getElementById("mobileMenu");
-                const navOverlay = document.getElementById("navOverlay");
-                const mobileBack = document.getElementById("mobileBack");
+        </div>
 
-                function closeMenu() {
-                    navToggle.classList.remove("active");
-                    mobileMenu.classList.remove("active");
-                    navOverlay.classList.remove("active");
-                }
+      </footer>
 
-                if (navToggle && mobileMenu && navOverlay) {
-                    navToggle.addEventListener("click", () => {
-                        navToggle.classList.toggle("active");
-                        mobileMenu.classList.toggle("active");
-                        navOverlay.classList.toggle("active");
-                    });
-
-                    navOverlay.addEventListener("click", closeMenu);
-                    if (mobileBack) mobileBack.addEventListener("click", closeMenu);
-
-                    // Close menu when clicking a link
-                    const mobileLinks = mobileMenu.querySelectorAll("a");
-                    mobileLinks.forEach(link => {
-                        link.addEventListener("click", closeMenu);
-                    });
-                }
-
-                /* ===============================
-                   🔥 SCROLL PROGRESS BAR
-                =============================== */
-
-                const scrollProgress = document.querySelector('.scroll-progress');
-                window.addEventListener('scroll', () => {
-                    if (scrollProgress) {
-                        const scrollPercent =
-                            (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                        scrollProgress.style.width = scrollPercent + '%';
-                    }
-                });
-
-                /* ===============================
-                   🔥 REVEAL ANIMATIONS
-                =============================== */
-
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            entry.target.classList.add('animate');
-                        }
-                    });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-
-                const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, [class*="fade-in-"], [class*="slide-in-"], [class*="scale-in"], [class*="rotate-in"]');
-                revealElements.forEach((el) => {
-                    revealObserver.observe(el);
-                });
-
-                /* ===============================
-                   🔥 COUNTER ANIMATION
-                =============================== */
-
-                const counterObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const counters = entry.target.querySelectorAll('.count-up');
-                            counters.forEach(counter => animateCounter(counter));
-                            counterObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
-
-                const statsBar = document.querySelector('.stats-bar');
-                if (statsBar) counterObserver.observe(statsBar);
-
-                function animateCounter(el) {
-                    const target = parseInt(el.getAttribute('data-target'));
-                    const prefix = el.getAttribute('data-prefix') || '';
-                    const suffix = el.getAttribute('data-suffix') || '';
-                    const duration = 2000;
-                    const frameDuration = 1000 / 60;
-                    const totalFrames = Math.round(duration / frameDuration);
-                    let frame = 0;
-
-                    const count = () => {
-                        frame++;
-                        const progress = frame / totalFrames;
-                        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
-                        const currentCount = Math.round(target * easeOutExpo);
-
-                        el.innerText = prefix + currentCount.toLocaleString() + suffix;
-
-                        if (frame < totalFrames) {
-                            requestAnimationFrame(count);
-                        } else {
-                            el.innerText = prefix + target.toLocaleString() + suffix;
-                        }
-                    };
-
-                    count();
-                }
-
-                /* ===============================
-                   🔥 FAQ ACCORDION
-                =============================== */
-
-                const faqItems = document.querySelectorAll('.faq-item');
-                faqItems.forEach(item => {
-                    const question = item.querySelector('.faq-question');
-
-                    question.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-
-                        faqItems.forEach(otherItem => {
-                            otherItem.classList.remove('active');
-                        });
-
-                        if (!isActive) {
-                            item.classList.add('active');
-                        }
-                    });
-                });
-
-            });
-        </script>
-</body>
-
-</html>
+    </main>
+  );
+}
