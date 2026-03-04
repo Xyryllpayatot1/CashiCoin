@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CashiCoin</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary: #00D16B;
+            --primary-hover: #00B55C;
+            --dark: #061022;
+            --light: #FFFFFF;
+            --bg: #F8FAFC;
+            --muted: #64748B;
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --accent-blue: #4F46E5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* ===== NAV BAR ===== */
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            height: 70px;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-brand span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.25rem;
+            height: 100%;
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            font-weight: 600;
+            gap: 2px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 1.4rem;
+        }
+
+        .nav-item:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            background: var(--primary);
+            color: var(--dark);
+            border-bottom-color: var(--primary);
+        }
+
+        /* ===== MOBILE NAV ELEMENTS (Handled by style.css) ===== */
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-left: auto;
+        }
+
+        .notif-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .notif-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .balance-badge {
+            background: #E8F9F1;
+            /* Very light green tint */
+            color: #004D2E;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            border: 1px solid rgba(0, 209, 107, 0.2);
+        }
+
+        .balance-badge i {
+            color: var(--primary);
+        }
+
+        .user-capsule {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: white;
+            padding: 4px 4px 4px 18px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            height: 44px;
+        }
+
+        .user-capsule:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+
+        .user-greeting {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1e293b;
+            white-space: nowrap;
+        }
+
+        .user-profile {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+        }
+
+        /* ===== KASHKICK HERO OVERHAUL ===== */
+        .hero-slider {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            height: 380px;
+            background: var(--dark);
+            border-radius: 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-slider-content {
+            display: flex;
+            width: 100%;
+            height: 380px;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 380px;
+            position: relative;
+            background-size: cover;
+            background-position: center right;
+            background-color: var(--dark);
+        }
+
+        /* Dark gradient overlay on the left for readability */
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right,
+                    var(--dark) 0%,
+                    rgba(6, 16, 34, 0.95) 35%,
+                    rgba(6, 16, 34, 0.6) 60%,
+                    transparent 90%);
+            z-index: 1;
+        }
+
+        .hero-left {
+            position: absolute;
+            top: 50%;
+            left: 4rem;
+            transform: translateY(-50%);
+            z-index: 10;
+            max-width: 520px;
+        }
+
+        .hero-left h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-left p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* Earn button pill */
+        .hero-earn-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .hero-earn-btn:hover {
+            background: var(--primary-hover);
+            transform: scale(1.04);
+        }
+
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .arrow-prev {
+            left: 2rem;
+        }
+
+        .arrow-next {
+            right: 2rem;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background: #f1f5f9;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-divider {
+            color: #cbd5e1;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-info {
+            color: var(--muted);
+            font-size: 0.9rem;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-label {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ===== CONTROLS ===== */
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            /* Align tabs to the bottom */
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0;
+        }
+
+        /* ===== EMPTY STATE (My Games) ===== */
+        .empty-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1.5rem 5rem;
+        }
+
+        .empty-state.show {
+            display: flex;
+        }
+
+        .empty-state-info {
+            width: 100%;
+            max-width: 680px;
+            background: #f0f4ff;
+            border: 1px solid #dce6ff;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            color: #3a4a6b;
+        }
+
+        .empty-state-info i {
+            font-size: 1.3rem;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+
+        .empty-state-mascot {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+        }
+
+        .empty-state h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 400px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .empty-state p strong {
+            color: var(--primary);
+        }
+
+        .empty-state-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .btn-empty {
+            background: var(--dark);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .btn-empty:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* tab panel visibility */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .tabs-kash {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: -1px;
+            /* Overlap with the container's bottom border */
+        }
+
+        .tab-kash-item {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.8rem 1.75rem;
+            border-radius: 10px 10px 0 0;
+            transition: 0.2s;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            white-space: nowrap;
+        }
+
+        .tab-kash-item:hover {
+            color: var(--primary);
+        }
+
+        .tab-kash-item.active {
+            background: white;
+            color: var(--dark);
+            border-bottom-color: white;
+            /* Seamless connection to white bg */
+            font-weight: 800;
+        }
+
+        .tab-kash-item.active::after {
+            display: none;
+        }
+
+        /* tab panel visibility */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .actions-kash {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .filter-pill {
+            background: var(--dark);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-trigger {
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .sort-dropdown {
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            cursor: pointer;
+        }
+
+        /* ===== GAME GRID ===== */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+        }
+
+        .card-body p {
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .reward-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reward-label {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .btn-join {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .btn-join:hover {
+            background: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        /* ===== ACCOUNT ALERT ===== */
+        .alert-box {
+            background: #FFFBEB;
+            border: 1px solid #FEF3C7;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: #92400E;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .top-bar {
+                padding: 0 1.5rem;
+            }
+
+            .nav-right .user-greeting,
+            .nav-right .balance-badge {
+                display: none;
+            }
+
+            .main-container {
+                padding: 0 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tabs-kash {
+                overflow-x: auto;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .tab-kash-item {
+                white-space: nowrap;
+                padding: 0.8rem 1.25rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <a href="landing.html" class="nav-brand">
+            CashiCoin<span>&lt;</span>
+        </a>
+
+        <nav class="nav-menu" id="topNavMenu">
+            <a href="dashboard.html" class="nav-item">
+                <i class="ri-gamepad-line"></i>
+                <span>Games</span>
+            </a>
+            <a href="deals.html" class="nav-item">
+                <i class="ri-percent-line"></i>
+                <span>Deals</span>
+            </a>
+            <a href="surveys.html" class="nav-item active">
+                <i class="ri-file-list-3-line"></i>
+                <span>Surveys</span>
+            </a>
+            <a href="giveaway.html" class="nav-item">
+                <i class="ri-gift-line"></i>
+                <span>Giveaways</span>
+            </a>
+            <a href="shopping.html" class="nav-item">
+                <i class="ri-shopping-bag-line"></i>
+                <span>Shopping</span>
+            </a>
+        </nav>
+
+        <div class="nav-right">
+            <button class="notif-btn">
+                <i class="ri-notification-3-line"></i>
+            </button>
+            <div class="balance-badge">
+                <i class="ri-wallet-3-fill"></i>
+                <span id="userBalance">$0.00</span>
+            </div>
+            <div class="user-capsule" onclick="toggleUserMenu()">
+                <span class="user-greeting">Hi, <span id="userGreetingName">Gamer</span></span>
+                <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Lucky&backgroundColor=00D16B" id="avatarImg"
+                    class="user-profile" alt="User"
+                    onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=U&backgroundColor=061022'">
+            </div>
+            <!-- Hamburger Toggle -->
+            <button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="dashboard.html"><i class="ri-gamepad-line"></i> Games</a>
+        <a href="deals.html"><i class="ri-percent-line"></i> Deals</a>
+        <a href="surveys.html" class="active"><i class="ri-file-list-3-line"></i> Surveys</a>
+        <a href="giveaway.html"><i class="ri-gift-line"></i> Giveaways</a>
+        <a href="shopping.html"><i class="ri-shopping-bag-line"></i> Shopping</a>
+        <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="#" onclick="toggleUserMenu()"><i class="ri-logout-box-r-line"></i> Log Out</a>
+        </div>
+    </div>
+
+    <main class="main-container">
+
+
+        <!-- SURVEYS HEADER HERO -->
+        <section class="survey-hero">
+            <div class="survey-hero-mascot">
+                <img src="assets/mascot.png" alt="Survey Mascot">
+            </div>
+            <div class="survey-hero-text">
+                <h2>Surveys</h2>
+                <h1>Hey <span id="surveyGreetingName">Gamer</span>!</h1>
+                <h3 class="highlight-text">Transform your opinions to <span>cash rewards!</span></h3>
+                <p>Share your opinion to earn Easy Kash. We're here to enhance your survey experience by connecting you
+                    with top-tier surveys tailored just for you. Keep your answers honest and consistent to watch the
+                    cash roll in.</p>
+                <div class="survey-cta-hint">Don't wait - earn money now!</div>
+            </div>
+        </section>
+
+        <!-- SECTION: SURVEYS -->
+        <div id="section-surveys" class="main-section active">
+            <!-- Tabs -->
+            <div class="survey-tabs">
+                <div class="survey-tab-item active" onclick="switchSurveyTab('surveys', this)">Surveys</div>
+                <div class="survey-tab-item" onclick="switchSurveyTab('profiles', this)">My Profiles</div>
+            </div>
+
+            <!-- Panel: Surveys -->
+            <div id="survey-tab-surveys" class="survey-panel active">
+
+                <!-- Unlock Banner -->
+                <div class="unlock-banner">
+                    <div class="banner-left">
+                        <div class="banner-icon">
+                            <img src="assets/logo2.png" alt="CashiCoin Logo">
+                        </div>
+                        <div class="banner-text">
+                            <h3>Unlock high paying surveys, Earn <span class="cash-badge">$1</span> instantly!</h3>
+                            <div class="time-badge"><i class="ri-time-line"></i> 1 - 10 minutes</div>
+                        </div>
+                    </div>
+                    <button class="btn-unlock">Complete your Profile</button>
+                </div>
+
+                <!-- Locked Grid -->
+                <div class="survey-grid">
+                    <!-- Card 1 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">9 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$1.17</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">12 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.40</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">16 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.43</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">13 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.86</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">10 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.72</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="survey-card locked">
+                        <div class="time-floating">14 minutes</div>
+                        <div class="card-details">
+                            <h3 class="reward-amt">$0.79</h3>
+                            <p>Easy Kash</p>
+                        </div>
+                        <div class="btn-locked-action"><i class="ri-lock-fill"></i> Locked</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel: Profiles -->
+            <div id="survey-tab-profiles" class="survey-panel" style="display: none;">
+
+                <!-- Maximize Earning Banner -->
+                <div class="profile-earning-banner">
+                    <div class="earning-banner-content">
+                        <div class="earning-text">
+                            <h3>Maximize Your Earning Power!</h3>
+                            <p>Complete your profiles and unlock the best surveys, bigger rewards, and instant kash!</p>
+                        </div>
+                        <div class="earning-status">
+                            <span class="status-label">Get started today!</span>
+                            <span class="status-amount">$0.00 / $1.80</span>
+                        </div>
+                    </div>
+                    <div class="earning-progress-bar">
+                        <div class="earning-progress-fill" style="width: 5%;"></div>
+                    </div>
+                </div>
+
+                <!-- Profiles Grid -->
+                <div class="profile-grid">
+                    <!-- General Profile (Active) -->
+                    <div class="profile-card active">
+                        <div class="profile-card-header">
+                            <div class="profile-title">
+                                <i class="ri-list-check"></i>
+                                <h4>General</h4>
+                            </div>
+                            <span class="profile-reward-badge">$1.00</span>
+                        </div>
+                        <p class="profile-desc">Introduce yourself</p>
+                        <div class="profile-progress-bar">
+                            <div class="profile-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/15</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Gaming Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Gaming</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/11</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Household Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Household</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/12</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Occupation Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Occupation</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/7</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Automobile Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Automobile</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/7</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                    <!-- Travel & Ent Profile (Locked) -->
+                    <div class="profile-card locked">
+                        <div class="profile-card-header">
+                            <div class="profile-title locked-title">
+                                <i class="ri-lock-fill"></i>
+                                <h4>Travel & Ent.</h4>
+                            </div>
+                        </div>
+                        <p class="profile-desc">Locked - Complete General to unlock</p>
+                        <div class="profile-card-footer">
+                            <span>Questions 0/9</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </main>
+
+    <!-- KashKick Styled Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <a href="landing.html" class="footer-brand">
+                    CashiCoin<span>&lt;</span>
+                </a>
+                <nav class="footer-links">
+                    <a href="#">Help & Support</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">Terms of Service</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">Privacy Policy</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">CA Privacy Rights</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">Health Privacy</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">Giveaway Rules</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p>© <span id="currentYear">2026</span> All Rights Reserved By CashiCoin</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.8rem;">This website is intended for
+                        residents of the USA only.</p>
+                </div>
+                <div class="footer-social">
+                    <span class="social-label">Follow Us:</span>
+                    <a href="#" class="social-btn"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loggedInUser = sessionStorage.getItem("loggedInUser");
+            const userName = sessionStorage.getItem("userName");
+            const userPicture = sessionStorage.getItem("userPicture");
+
+            if (!loggedInUser) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            // Update Header Greeting
+            const nameToUse = userName || loggedInUser;
+            if (nameToUse) {
+                const firstWord = nameToUse.split(/[\s.@]/)[0];
+                const greetedName = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
+                document.getElementById('userGreetingName').textContent = greetedName;
+                document.getElementById('surveyGreetingName').textContent = greetedName; // For the survey hero
+
+                if (!userPicture) {
+                    document.getElementById('avatarImg').src = `https://api.dicebear.com/7.x/adventurer/svg?seed=${greetedName}&backgroundColor=00D16B`;
+                }
+            }
+
+            if (userPicture) {
+                document.getElementById('avatarImg').src = userPicture;
+            }
+
+            // Set current year for footer
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) yearElement.textContent = new Date().getFullYear();
+        });
+
+        function toggleUserMenu() {
+            if (confirm("Do you want to log out?")) {
+                sessionStorage.clear();
+                window.location.href = "index.html";
+            }
+        }
+
+        function toggleMobileMenu() {
+            const navToggle = document.getElementById('navToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navOverlay = document.getElementById('navOverlay');
+
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Survey Tab Switching
+        function switchSurveyTab(tabName, clickedEl) {
+            // Update Tab active state
+            document.querySelectorAll('.survey-tab-item').forEach(t => t.classList.remove('active'));
+            if (clickedEl) clickedEl.classList.add('active');
+
+            // Hide all panels
+            document.querySelectorAll('.survey-panel').forEach(p => {
+                p.style.display = 'none';
+                p.classList.remove('active');
+            });
+
+            // Show selected panel
+            const targetPanel = document.getElementById('survey-tab-' + tabName);
+            if (targetPanel) {
+                targetPanel.style.display = 'block';
+                targetPanel.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
