@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - CashiApp</title>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Remixicons for Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-content {
+            flex: 1;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .support-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .support-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--bg-dark);
+            border-bottom: 2px solid var(--bg-body);
+            padding-bottom: 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-question i {
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-left: 1.75rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 1rem;
+            outline: none;
+            background: var(--bg-body);
+            transition: var(--transition);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+            border-radius: 12px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            box-shadow: 0 0 0 3px rgba(0, 209, 107, 0.3);
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 209, 107, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top-nav">
+        <a href="landing.html" class="nav-brand" style="text-decoration: none; color: white;">
+            <span class="brand-text">cashiapp</span><span class="brand-arrow">&lt;</span>
+        </a>
+        <nav class="nav-links">
+            <a href="get-started.html"><i class="ri-money-dollar-circle-fill"></i><span>Get Started</span></a>
+            <a href="ways-to-earn.html"><i class="ri-add-circle-fill"></i><span>Ways to Earn</span></a>
+            <a href="support.html" style="opacity: 1; border-bottom: 2px solid var(--primary); padding-bottom: 5px;"><i
+                    class="ri-question-answer-fill"></i><span>Support</span></a>
+        </nav>
+        <div class="nav-actions">
+            <a href="index.html"><button class="nav-btn btn-primary">Sign Up</button></a>
+            <a href="index.html"><button class="nav-btn btn-white">Login</button></a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero-section">
+            <h1>Help Center</h1>
+            <p>Need assistance? Check our frequently asked questions below or reach out to our support team directly.
+            </p>
+        </section>
+
+        <div class="support-card">
+            <h2><i class="ri-question-fill"></i> Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="ri-arrow-right-s-line"></i> How do I withdraw my earnings?
+                </div>
+                <div class="faq-answer">
+                    You can withdraw your cash straight to your PayPal account once you reach the minimum payout
+                    threshold of $10. Transfers usually process within 1-3 business days.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="ri-arrow-right-s-line"></i> I haven't received credit for a game.
+                </div>
+                <div class="faq-answer">
+                    Please ensure you permitted tracking when downloading the app, and that you are a new user to that
+                    specific game. If you met the requirements, credit should appear within 24-48 hours.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="ri-arrow-right-s-line"></i> Why was my survey disqualified?
+                </div>
+                <div class="faq-answer">
+                    Surveys look for very specific demographics (e.g., age, profession) and end early if you do not fit
+                    the target audience. Don't worry, there are always more surveys available in your dashboard.
+                </div>
+            </div>
+        </div>
+
+        <div class="support-card">
+            <h2><i class="ri-mail-send-fill"></i> Contact Support</h2>
+            <form class="contact-form" action="#" method="POST">
+                <div class="input-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="topic">Topic of inquiry</label>
+                    <input type="text" id="topic" name="topic" placeholder="e.g. Missing points" required>
+                </div>
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message"
+                        placeholder="Please describe your issue in detail so we can help you." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn"
+                    onclick="event.preventDefault(); alert('Your message has been sent to our support team!');">Send
+                    Message</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
