@@ -89,7 +89,6 @@ body {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     background: rgba(6, 16, 34, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
     color: white;
 }
@@ -615,10 +614,10 @@ main,
 .bg-grid-overlay {
     position: absolute;
     inset: 0;
-    background: url('assets/login_bg_premium.png');
+    background: url('assets/background.png');
     background-size: cover;
     background-position: center;
-    opacity: 0.35;
+    opacity: 0.15;
     z-index: 0;
     filter: saturate(1.5) contrast(1.1);
 }
